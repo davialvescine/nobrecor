@@ -14,13 +14,15 @@
 | Build | 213 páginas estáticas (SSG), verde |
 | Repositório | `git@github.com:davialvescine/nobrecor.git` |
 | Deploy | ❌ ainda não publicado |
-| Domínio | ❌ `nobrecor.com.br` ainda não registrado |
+| Domínio | ❌ `nobrecorpinturas.com.br` escolhido, ainda não registrado (ver `docs/dominio-e-dns.md`) |
 | Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
+| E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
+| Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
 | Google Analytics | ⚠️ falta criar a propriedade e definir `NEXT_PUBLIC_GA_ID` |
 | Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
 | Perfil da Empresa no Google | ❌ não cadastrado |
 | Fotos de obra | ❌ nenhuma (portfólio vazio de propósito) |
-| Vídeo da hero | ❌ removido: o arquivo do protótipo estava corrompido |
+| Fundo da hero | ✅ 6 cenas (2 vídeos + 4 fotos) em transição cruzada — ambientação, NÃO obra da empresa |
 | Depoimentos | ❌ nenhum real |
 
 ### Números do conteúdo
@@ -88,7 +90,12 @@ Detalhes completos: `.claude/rules/marca.md`.
 Está em `.claude/rules/conteudo.md` e vale para toda sessão e todo agente.
 
 Proibido escrever como se existisse: depoimento, `aggregateRating`/`review` no schema, preço de
-tabela, anos de mercado, número de obras, ponto de referência ou condomínio não verificado.
+tabela, número de obras, ponto de referência ou condomínio não verificado.
+
+**Exceção declarada pelo dono em 16/08/2026:** "mais de 20 anos de experiência" em pintura PODE
+ser escrito — a operação é a mesma há mais de duas décadas e passou a se chamar Nobre Cor. Não
+derivar disso data de fundação no schema nem número de obras, e não mencionar a troca de nome
+(pedido do dono). Tabela completa dos fatos declarados: `.claude/rules/conteudo.md`.
 
 Permitido e desejável: detalhe técnico do ofício (processo, material, norma), perfil geral e
 verificável do bairro, e os 4 diferenciais declarados pelo dono.
@@ -114,6 +121,8 @@ nobrecor/
 ├── public/
 │   ├── llms.txt                   descrição do site para IAs
 │   ├── images/marca/              logos finais (SVG + PNG)
+│   ├── images/hero/               as 4 fotos e os 2 posters do fundo da hero
+│   ├── videos/                    hero-01-fachada.mp4 · hero-04-anoitecer.mp4
 │   └── images/portfolio/          ⬅ fotos antes/depois entram aqui
 ├── scripts/
 │   ├── check-rotas.mjs            slugs, colisões, placeholders
@@ -131,8 +140,8 @@ nobrecor/
 │   │   └── layout.tsx
 │   ├── components/
 │   │   ├── layout/      Header · Footer · PageWrapper
-│   │   ├── sections/    Hero · PainelMarca · Marquee · Diferenciais · Servicos
-│   │   │                Processo · Bairros · Portfolio · Faq · Cta
+│   │   ├── sections/    Hero · HeroSlideshow · Marquee · Diferenciais · Servicos
+│   │   │                Processo · FormOrcamento · Bairros · Portfolio · Faq · Cta
 │   │   ├── ui/          Reveal · TituloSecao · CardServico · IconeServico · Logo
 │   │   ├── whatsapp/    FloatingWhatsApp
 │   │   └── analytics/   GoogleAnalytics
@@ -327,6 +336,7 @@ A mensagem se adapta ao que a página sabe:
 | Home, cabeçalho, páginas gerais | `Olá! Vim pelo site e gostaria de um orçamento de pintura. Pode me ajudar?` |
 | Página de bairro | acrescenta `Bairro: <nome>` |
 | Landing serviço × bairro | acrescenta `Serviço: <nome>` e `Bairro: <nome>` |
+| Formulário de orçamento | acrescenta `Nome`, `Bairro`, `Imóvel`, `Serviço` e `Detalhes` |
 
 Efeito colateral útil: dá para saber pela própria mensagem qual página trouxe o lead, sem
 precisar perguntar ao cliente.
@@ -403,11 +413,14 @@ O gate só cobra bairro com `copyRevisada: true`. Os demais aparecem no relatór
 
 ## 13. TAREFAS PENDENTES (ordem de prioridade)
 
-1. **Registrar `nobrecor.com.br`** no registro.br (~R$40/ano) + garantir o @ no Instagram.
+1. **Registrar `nobrecorpinturas.com.br`** no registro.br (~R$40/ano) + garantir o @ no
+   Instagram. Procedimento completo, incluindo os registros de DNS e as pegadinhas do
+   registro.br: **`docs/dominio-e-dns.md`**.
 2. **Deploy na Vercel** e apontar o domínio. Definir `NEXT_PUBLIC_GA_ID`. Rodar `deploy-verifier`.
 3. **Fotos e vídeo de obra** — ver instruções no topo de `src/content/portfolio.ts`. A seção de
    portfólio só aparece quando houver obra cadastrada (nunca colocar banco de imagens como obra
-   da empresa). Quando houver imagem real, ela substitui o `PainelMarca` na hero da home.
+   da empresa). Quando houver foto de obra real, ela entra no lugar de uma das cenas geradas
+   do `HeroSlideshow` — e só então pode ser legendada como obra.
 4. **Perfil da Empresa no Google** — categoria "Pintor", área Campo Grande, fotos toda semana,
    pedido de avaliação 5★ ao fim de cada obra. É o que mais move o ranking local.
 5. **Search Console + Bing Webmaster** — verificar e enviar o sitemap.
@@ -441,6 +454,11 @@ O gate só cobra bairro com `copyRevisada: true`. Os demais aparecem no relatór
 - Não usar verde em nada além do WhatsApp.
 - Não usar `HUSKY=0` nem `--no-verify`.
 - Não chamar `buildWhatsAppLink()` de um jeito que abra a conversa em branco.
+- Não dar backend ao `FormOrcamento` sem pedido do dono, e não apresentar as cenas do
+  `HeroSlideshow` como obra da Nobre Cor.
+- Não colocar vídeo como primeira cena do `HeroSlideshow` marcada como `estatica`: é ela que
+  sobra em `prefers-reduced-motion`, e CSS não pausa mídia.
+- Não passar de 2 vídeos no fundo da hero: `loop` decodifica mesmo invisível.
 - Não remover o `images` explícito do `buildMetadata`: as páginas internas ficam sem preview.
 - Não marcar `copyRevisada: true` em bairro sem a copy hiperlocal escrita.
 - Não inventar `pontosReferencia`: array vazio é a resposta correta quando não há fonte.
@@ -466,8 +484,7 @@ grafiato, marmorato e pintura decorativa, que continuam no catálogo.
 | Decisão | Motivo |
 |---|---|
 | Bebas Neue no lugar de Marcellus | Pedido do dono, por referência a grotescas condensadas |
-| Vídeo da hero removido | Arquivo corrompido: travava carregando até aberto direto no navegador |
-| `PainelMarca` no lugar do vídeo | Ocupa o espaço de forma intencional até haver foto de obra real |
+| `PainelMarca` removido | Existia só para ocupar o lugar do vídeo. Com o fundo de volta, virava um vidro fosco com o pintor atravessando os cards |
 | Logo redesenhada com as 5 facetas | A versão anterior era contorno; a marca real é diamante preenchido |
 | Títulos de seção centralizados | Padrão `TituloSecao`; evita o vazio à direita em container largo |
 | FAQ em `<details>` | Conteúdo no DOM desde o primeiro byte (ver §7) |
@@ -476,3 +493,24 @@ grafiato, marmorato e pintura decorativa, que continuam no catálogo.
 | `og:image` gerado no build | O caminho fixo apontava para arquivo inexistente: card saía sem imagem |
 | `images` explícito no `buildMetadata` | Sem ele, só a home tinha preview; as outras 216 páginas não |
 | Link do WhatsApp nunca em branco | Cabeçalho e hero abriam o app vazio, perdendo o contexto do lead |
+| Fundo da hero em 6 cenas | Pedido do dono: "mescle fotos e vídeos". 2 vídeos + 4 fotos geradas no Magnific, 6s cada, transição cruzada só em CSS. Ambientação de marca — **não** é obra da empresa e não leva legenda |
+| Grão de filme no lugar das listras | As listras diagonais funcionavam sobre gradiente chapado; sobre fotografia elas cortavam as fachadas. O grão amarra as seis cenas e disfarça o banding do JPEG no céu escuro |
+| Marquee de 48s para 90s | A faixa fica logo abaixo da hero e puxava o olho antes de a pessoa terminar de ler o h1 |
+| Menu híbrido (âncora na home, página fora dela) | Pedido do dono: sensação de landing page. Na home o menu rola até a seção; nas demais páginas leva à página completa, preservando os links internos que as 217 páginas precisam para ranquear |
+| Cards de diferenciais em azul-nobre | A versão off-white sobre branco desaparecia (apontado pelo dono). Cards escuros com chip dourado e fio na base |
+| Chip azul no ícone dos cards de serviço | Mesma família visual dos diferenciais; o ícone solto em traço fino tinha pouca presença |
+| Menu com Processo e Dúvidas | Seções da home que não apareciam no menu (apontado pelo dono). Sem página própria, o destino fora da home é `/#ancora` |
+| Âncora do menu em `<a>` puro, não `<Link>` | O Link do Next intercepta o clique e a navegação de hash se perdia. Link fica só para rota real, pelo prefetch |
+| Hero `compacta` em TODA página interna | As 217 páginas internas repetiam a hero cheia da home, com selos e tudo (apontado pelo dono). A cheia é só da home |
+| `HousePlus` em Pintura de Casas Completa | Home e House são o MESMO desenho no lucide: dois cards saíam com ícone idêntico. Home ficou fora do mapa de ícones de propósito |
+| Catálogo com filtro por chips (`CatalogoServicos`) | O catálogo empilhado ocupava ~7 telas (apontado pelo dono). Estado inicial "todos": o HTML do build contém os 20 cards, filtro só age após interação — mesma lógica do FAQ em `<details>` |
+| Menu com destino FIXO por item | O híbrido confundia ("ora rola, ora abre outra página" — dono). Cada item leva sempre à seção da home; /servicos e /bairros seguem no rodapé, nas seções e no sitemap |
+| Botão "Pedir orçamento" do header → formulário | Pedido do dono. O form chega no mesmo WhatsApp, mas com nome, bairro e serviço preenchidos. WhatsApp direto segue no botão flutuante e no menu mobile |
+| /contato sem o grid "Canais de atendimento" | O NAP que pesa para SEO local está no rodapé de todas as páginas e no schema; os cards só empurravam o formulário para baixo |
+| `dynamicParams = false` nas 3 rotas dinâmicas | Sem isso, as ~1.515 landings das ondas 2–4 respondiam 200 sob demanda, furando o rollout por onda (verificado em 16/08/2026) |
+| Formulário sem backend | Mantém o site 100% estático e a LGPD trivial: nada é gravado, os dados vão direto para a conversa do WhatsApp |
+| Bairro e serviço em `<select>` no form | O concorrente pede região como texto livre e recebe "asa sul", "Asa-Sul", "asasul". O select devolve o nome canônico de `src/content/` |
+| Honeypot no lugar de reCAPTCHA | Sem servidor para proteger, o reCAPTCHA só custaria ~250 KB de JS de terceiro e um cookie |
+| E-mail em gmail.com por ora | É a caixa que o dono de fato lê. Vira `contato@nobrecorpinturas.com.br` assim que o domínio for registrado |
+| Sábado e domingo fechados | Não há atendimento no fim de semana; o `openingHoursSpecification` foi ajustado junto |
+| h1 da home com as 3 promessas | Mais chamativo que o anterior sem perder a localidade. "Pintura" no lugar de "Pintor" foi pedido do dono — o casamento exato da busca segue no `<title>` |

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Phone, Mail, MapPin } from 'lucide-react'
-import { BUSINESS } from '@/lib/business'
+import { BUSINESS, buildWhatsAppLink } from '@/lib/business'
+import { IconeWhatsApp } from '@/components/whatsapp/FloatingWhatsApp'
 import { SERVICOS_ESTRELA } from '@/content/servicos'
 import { BAIRROS_PRIORITARIOS } from '@/content/bairros'
 import Logo from '@/components/ui/Logo'
@@ -94,6 +95,17 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
+                <IconeWhatsApp className="w-4 h-4 mt-0.5 text-[#c8963e] shrink-0" />
+                <a
+                  href={buildWhatsAppLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#c8963e]"
+                >
+                  Orçamento pelo WhatsApp
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 mt-0.5 text-[#c8963e] shrink-0" aria-hidden="true" />
                 <span>
                   {BUSINESS.address.locality}, {BUSINESS.address.region}
@@ -104,9 +116,7 @@ export default function Footer() {
             <p className="text-sm">
               Segunda a sexta: {BUSINESS.hours.segundaASexta}
               <br />
-              Sábado: {BUSINESS.hours.sabado}
-              <br />
-              Domingo: {BUSINESS.hours.domingo}
+              Sábado e domingo: {BUSINESS.hours.fimDeSemana}
             </p>
           </div>
         </div>

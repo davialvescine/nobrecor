@@ -23,6 +23,15 @@ export function generateStaticParams() {
   return getLandingPages().map((lp) => ({ landing: lp.slug }))
 }
 
+/**
+ * Sem isto, o padrão do Next (`true`) renderiza SOB DEMANDA qualquer slug que
+ * parseie — ou seja, as ~1.515 combinações das ondas 2, 3 e 4 respondiam 200
+ * mesmo fora do sitemap (verificado em 16/08/2026). Isso fura a estratégia de
+ * rollout por onda: página fora da onda é exatamente o thin content que os
+ * gates do CLAUDE.md §6 existem para segurar.
+ */
+export const dynamicParams = false
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { landing } = await params
   const parsed = parseLandingSlug(landing)
@@ -89,6 +98,7 @@ export default async function LandingPage({ params }: Props) {
       />
 
       <Hero
+        compacta
         eyebrow={`${bairro.nome} · Região Urbana do ${regiao?.nome ?? 'Campo Grande'}`}
         titulo={
           <>

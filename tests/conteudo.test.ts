@@ -14,6 +14,7 @@ import {
   buildWhatsAppLink,
   buildWhatsAppMessage,
   MENSAGEM_PADRAO,
+  SITE_URL,
 } from '@/lib/business'
 
 const SLUG_VALIDO = /^[a-z0-9]+(-[a-z0-9]+)*$/
@@ -135,7 +136,10 @@ describe('matriz serviço × bairro', () => {
 describe('SEO', () => {
   it('buildMetadata define canonical absoluto', () => {
     const meta = buildMetadata({ title: 'X', description: 'Y', path: '/servicos' })
-    expect(meta.alternates?.canonical).toBe('https://nobrecor.com.br/servicos')
+    // Derivado de SITE_URL, não escrito à mão: o que importa é o canonical ser
+    // absoluto e apontar para o domínio de produção, não qual domínio é hoje.
+    expect(meta.alternates?.canonical).toBe(`${SITE_URL}/servicos`)
+    expect(SITE_URL).toMatch(/^https:\/\//)
   })
 
   it('títulos das landings da onda ativa cabem no limite do Google', () => {

@@ -47,7 +47,7 @@ export default function CtaSection({
         </div>
 
         <p className="text-white/50 text-sm pt-2">
-          Segunda a sexta {BUSINESS.hours.segundaASexta} · Sábado {BUSINESS.hours.sabado}
+          Segunda a sexta {BUSINESS.hours.segundaASexta}
         </p>
       </div>
     </section>

@@ -4,7 +4,7 @@ import {
   Building2,
   PaintRoller,
   PaintBucket,
-  Home,
+  HousePlus,
   DoorOpen,
   TreePine,
   Grid2x2,
@@ -32,13 +32,15 @@ import {
  * continuar sendo dado puro (serializável, testável, sem importar React). A
  * tradução para componente acontece aqui, num único lugar.
  */
+// Cuidado com apelidos do lucide: Home e House são o MESMO desenho. Manter só
+// House no mapa — reintroduzir Home recria dois cards com ícone idêntico.
 const ICONES: Record<string, LucideIcon> = {
   Gem,
   House,
   Building2,
   PaintRoller,
   PaintBucket,
-  Home,
+  HousePlus,
   DoorOpen,
   TreePine,
   Grid2x2,

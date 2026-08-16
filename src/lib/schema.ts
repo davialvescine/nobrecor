@@ -71,12 +71,6 @@ export function buildLocalBusinessSchema() {
         opens: '08:00',
         closes: '18:00',
       },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
-        opens: '08:00',
-        closes: '12:00',
-      },
     ],
     sameAs: [
       BUSINESS.socials.instagram,

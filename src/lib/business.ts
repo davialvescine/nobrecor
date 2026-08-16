@@ -19,8 +19,16 @@ export const BUSINESS = {
   phoneFormatted: '(67) 98152-2412',
   whatsappNumero: '5567981522412',
 
-  email: 'contato@nobrecor.com.br',
-  url: 'https://nobrecor.com.br',
+  // Caixa informada pelo dono em 16/08/2026. Quando o domínio estiver
+  // registrado, criar `contato@nobrecorpinturas.com.br` com encaminhamento para
+  // esta conta e trocar aqui: endereço no próprio domínio pesa mais no NAP e
+  // no alto padrão que um gmail.com.
+  email: 'nobrecorpinturas@gmail.com',
+
+  // Domínio escolhido pelo dono em 16/08/2026: casa com o @nobrecorpinturas
+  // do Instagram. NÃO trocar por env var por ambiente — canonical de preview
+  // destrói indexação (ver CLAUDE.md §14).
+  url: 'https://nobrecorpinturas.com.br',
 
   address: {
     locality: 'Campo Grande',
@@ -34,10 +42,13 @@ export const BUSINESS = {
     longitude: -54.6201,
   },
 
+  /**
+   * Sábado e domingo NÃO há atendimento (decisão do dono em 16/08/2026).
+   * Horário aqui é a fonte única: schema, rodapé, CTA e página de contato leem daqui.
+   */
   hours: {
     segundaASexta: '08:00-18:00',
-    sabado: '08:00-12:00',
-    domingo: 'Fechado',
+    fimDeSemana: 'Fechado',
   },
 
   socials: {

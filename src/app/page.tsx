@@ -5,6 +5,7 @@ import MarqueeServicos from '@/components/sections/MarqueeServicos'
 import DiferenciaisSection from '@/components/sections/DiferenciaisSection'
 import ServicosSection from '@/components/sections/ServicosSection'
 import ProcessoSection from '@/components/sections/ProcessoSection'
+import FormOrcamento from '@/components/sections/FormOrcamento'
 import BairrosSection from '@/components/sections/BairrosSection'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import FaqSection from '@/components/sections/FaqSection'
@@ -28,10 +29,12 @@ export default function HomePage() {
 
       <Hero
         eyebrow="Campo Grande MS"
-        painel
+        fotos
+        ctaSecundarioHref="#orcamento"
+        ctaSecundarioLabel="Preencher formulário"
         titulo={
           <>
-            Pintor profissional em Campo Grande MS com{' '}
+            Pintura profissional em Campo Grande MS: obra limpa, prazo cumprido e{' '}
             <span className="text-[#c8963e]">acabamento de alto padrão</span>
           </>
         }
@@ -42,6 +45,7 @@ export default function HomePage() {
       <DiferenciaisSection />
       <ServicosSection />
       <ProcessoSection />
+      <FormOrcamento />
       <BairrosSection />
       <PortfolioSection />
 

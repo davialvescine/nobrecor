@@ -487,7 +487,9 @@ export const SERVICOS: Servico[] = [
       'Casa inteira, interna, externa, teto, esquadrias e muro, executada com cronograma único e uma só equipe responsável.',
     descricaoLonga:
       'Pintura de casa completa em Campo Grande MS: interna, externa, tetos, esquadrias, portões e muro em um único contrato, com cronograma unificado e uma equipe responsável do começo ao fim. Evita o transtorno de contratar prestadores diferentes para cada parte e garante padrão de acabamento igual em toda a casa. A proposta sai discriminada por área, para você enxergar exatamente onde está cada valor.',
-    icone: 'Home',
+    // HousePlus, não Home: no lucide, Home e House são apelidos do MESMO desenho,
+    // e este card ficava idêntico ao de Pintura Residencial (House).
+    icone: 'HousePlus',
     foto: '/images/servicos/pintura-de-casas.jpg',
     prioridade: 'alto',
     unidade: 'por m² ou por projeto',

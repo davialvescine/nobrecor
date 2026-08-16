@@ -28,6 +28,7 @@ export default function ServicosPage() {
       />
 
       <Hero
+        compacta
         eyebrow={`${TOTAL_SERVICOS} tipos de pintura`}
         titulo={
           <>
@@ -38,7 +39,7 @@ export default function ServicosPage() {
       />
 
       <ServicosSection
-        titulo="Cardápio completo de serviços"
+        titulo="Serviços de pintura e acabamento em Campo Grande MS"
         subtitulo="Clique em qualquer serviço para ver como executamos, o que está incluso e as dúvidas mais frequentes."
       />
 

@@ -31,6 +31,7 @@ export default function BairrosPage() {
       />
 
       <Hero
+        compacta
         eyebrow={`${TOTAL_BAIRROS} bairros · 7 regiões urbanas`}
         titulo={
           <>

@@ -10,6 +10,8 @@ interface RevealProps {
   from?: 'baixo' | 'esquerda' | 'direita' | 'escala'
   className?: string
   as?: 'div' | 'section' | 'li' | 'article'
+  /** Estilos extras do chamador; mesclados com o transitionDelay interno. */
+  style?: React.CSSProperties
 }
 
 /**
@@ -28,6 +30,7 @@ export default function Reveal({
   from = 'baixo',
   className = '',
   as: Tag = 'div',
+  style,
 }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
   const [visivel, setVisivel] = useState(false)
@@ -78,7 +81,7 @@ export default function Reveal({
       } ${className}`}
       // Teto de 300ms: escalonar dá elegância, mas uma lista longa com delay
       // linear deixa os últimos itens quase meio segundo em branco.
-      style={{ transitionDelay: visivel ? `${Math.min(delay, 300)}ms` : '0ms' }}
+      style={{ ...style, transitionDelay: visivel ? `${Math.min(delay, 300)}ms` : '0ms' }}
     >
       {children}
     </Tag>

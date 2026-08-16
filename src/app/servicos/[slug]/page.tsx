@@ -24,6 +24,9 @@ export function generateStaticParams() {
   return SERVICOS.map((s) => ({ slug: s.slug }))
 }
 
+/** Slug fora do catálogo responde 404 direto, sem render sob demanda. */
+export const dynamicParams = false
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const servico = getServico(slug)
@@ -65,6 +68,7 @@ export default async function ServicoPage({ params }: Props) {
       />
 
       <Hero
+        compacta
         eyebrow={GRUPOS[servico.grupo]}
         titulo={
           <>

@@ -31,7 +31,7 @@ const ETAPAS = [
 
 export default function ProcessoSection() {
   return (
-    <section className="animate-fundo py-24 md:py-28" style={{ background: 'linear-gradient(135deg, #0f2437 0%, #1b3a5c 55%, #16324f 100%)' }} aria-labelledby="processo-heading">
+    <section id="processo" className="animate-fundo scroll-mt-20 py-24 md:py-28" style={{ background: 'linear-gradient(135deg, #0f2437 0%, #1b3a5c 55%, #16324f 100%)' }} aria-labelledby="processo-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TituloSecao
           id="processo-heading"

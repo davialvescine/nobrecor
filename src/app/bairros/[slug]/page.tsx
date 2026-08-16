@@ -23,6 +23,9 @@ export function generateStaticParams() {
   return BAIRROS.map((b) => ({ slug: b.slug }))
 }
 
+/** Slug fora da base responde 404 direto, sem render sob demanda. */
+export const dynamicParams = false
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const bairro = getBairro(slug)
@@ -79,6 +82,7 @@ export default async function BairroPage({ params }: Props) {
       />
 
       <Hero
+        compacta
         eyebrow={regiao ? `Região Urbana do ${regiao.nome}` : 'Campo Grande MS'}
         titulo={
           <>

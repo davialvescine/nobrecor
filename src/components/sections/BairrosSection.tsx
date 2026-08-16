@@ -13,7 +13,11 @@ import TituloSecao from '@/components/ui/TituloSecao'
  */
 export default function BairrosSection() {
   return (
-    <section className="bg-white py-24 md:py-28" aria-labelledby="bairros-heading">
+    <section
+      id="bairros"
+      className="scroll-mt-20 bg-white py-24 md:py-28"
+      aria-labelledby="bairros-heading"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TituloSecao
           id="bairros-heading"

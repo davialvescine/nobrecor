@@ -215,12 +215,56 @@
   }
 }
 
+/*
+  90s, não 48s. A faixa fica logo abaixo da hero e competia com o h1: o olho ia
+  atrás do movimento antes de terminar de ler o título. Nesta velocidade ela
+  vira textura de fundo, que é o papel dela.
+*/
 .animate-marquee {
-  animation: marquee 48s linear infinite;
+  animation: marquee 90s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/*
+  Fundo da hero: 6 cenas × 6s = ciclo de 36s.
+
+  As porcentagens correspondem a: 0,9s de entrada, 5,1s parada, 0,9s de saída.
+  Combinadas com o `animationDelay` de `i * 6 - 0.9` que o HeroSlideshow aplica,
+  a cena que sai chega a zero no mesmo instante em que a próxima chega a um —
+  nunca há duas em meio-tom nem um piscar de azul entre elas.
+
+  O zoom vai só até 1,05 e acontece dentro da janela visível. Ele existe para a
+  foto parada não parecer uma foto parada; passar disso vira efeito de
+  apresentação de slides.
+*/
+@keyframes hero-slide {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  2.5% {
+    opacity: 1;
+  }
+  16.7% {
+    opacity: 1;
+  }
+  19.2% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+.hero-slide {
+  opacity: 0;
+  will-change: opacity, transform;
+  animation: hero-slide 36s linear infinite;
 }
 
 /* Brilho que atravessa o botão dourado a cada ciclo. */
@@ -299,5 +343,21 @@
 
   .link-sublinhado::after {
     transition: none;
+  }
+
+  /*
+    Fundo da hero: sem troca de cena e sem zoom. Fica uma foto só, parada.
+    A cena mantida é a marcada com `--estatico`, que é sempre uma FOTO: CSS não
+    pausa mídia, então deixar um vídeo visível aqui manteria movimento na tela
+    justamente para quem pediu para não ter.
+  */
+  .hero-slide {
+    animation: none !important;
+    opacity: 0;
+    transform: none !important;
+  }
+
+  .hero-slide--estatico {
+    opacity: 1;
   }
 }

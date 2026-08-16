@@ -27,7 +27,7 @@ export default function FaqSection({
   if (faq.length === 0) return null
 
   return (
-    <section className="bg-[#f7f4ef] py-24 md:py-28" aria-labelledby="faq-heading">
+    <section id="faq" className="scroll-mt-20 bg-[#f7f4ef] py-24 md:py-28" aria-labelledby="faq-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-14 text-center">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a87b2f]">

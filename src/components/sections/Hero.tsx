@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { ArrowRight, ShieldCheck, CalendarCheck, Sparkles } from 'lucide-react'
+import { ArrowRight, ShieldCheck, CalendarCheck, Sparkles, Timer } from 'lucide-react'
 import { BUSINESS, buildWhatsAppLink } from '@/lib/business'
 import { IconeWhatsApp } from '@/components/whatsapp/FloatingWhatsApp'
-import PainelMarca from './PainelMarca'
+import HeroSlideshow from './HeroSlideshow'
 
 interface HeroProps {
   /** H1 da página. Deve ser único e conter a palavra-chave local. */
@@ -10,19 +10,29 @@ interface HeroProps {
   subtitulo: string
   eyebrow?: string
   mensagemWhatsApp?: string
-  /**
-   * Mostra o painel de marca ao lado do texto. Só na home: em página interna
-   * ele roubaria espaço do conteúdo que precisa ser indexado.
-   */
-  painel?: boolean
   /** Hero compacta, para páginas internas. */
   compacta?: boolean
+  /**
+   * CTA secundário. O padrão leva ao catálogo; a home troca por `#orcamento`
+   * para existir um caminho visível até o formulário já na primeira dobra.
+   */
+  ctaSecundarioHref?: string
+  ctaSecundarioLabel?: string
+  /**
+   * Fundo com as cinco fotos em transição cruzada. Só na home: em página interna
+   * seriam cinco downloads sem ajudar o conteúdo que precisa ser indexado.
+   *
+   * As fotos são ambientação de marca, NÃO obra da Nobre Cor — nunca rotular
+   * como portfólio (ver .claude/rules/conteudo.md).
+   */
+  fotos?: boolean
 }
 
 const SELOS = [
   { Icone: ShieldCheck, texto: 'Equipe uniformizada e obra protegida' },
   { Icone: CalendarCheck, texto: 'Cronograma definido e cumprido' },
   { Icone: Sparkles, texto: 'Acabamento de alto padrão' },
+  { Icone: Timer, texto: 'Proposta detalhada em até 24h' },
 ]
 
 export default function Hero({
@@ -30,9 +40,14 @@ export default function Hero({
   subtitulo,
   eyebrow,
   mensagemWhatsApp,
-  painel = false,
   compacta = false,
+  fotos = false,
+  ctaSecundarioHref = '/servicos',
+  ctaSecundarioLabel = 'Ver serviços',
 }: HeroProps) {
+  // Âncora usa <a> puro: o <Link> do Next intercepta o clique e a navegação de
+  // hash se perde (mesmo bug corrigido no Header em 16/08/2026).
+  const CtaSecundario = ctaSecundarioHref.includes('#') ? 'a' : Link
   return (
     <section
       className="animate-fundo relative overflow-hidden"
@@ -40,18 +55,84 @@ export default function Hero({
         background: 'linear-gradient(135deg, #0f2437 0%, #1b3a5c 48%, #24486e 100%)',
       }}
     >
-      {/* Textura de listras finas: dá profundidade sem competir com o texto. */}
+      {fotos && <HeroSlideshow />}
+
+      {/*
+        Véu azul sobre as fotos, em duas camadas.
+
+        A primeira é vertical e simétrica, porque o texto da hero é centralizado:
+        um degradê lateral deixaria uma das pontas do h1 sem contraste. A segunda
+        é uma vinheta radial que escurece só o miolo — é o que segura o branco
+        legível nas fotos de parede clara, sem apagar a luz dourada das bordas,
+        que é justamente o que as torna bonitas.
+      */}
+      {fotos && (
+        <>
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(15,36,55,0.92) 0%, rgba(15,36,55,0.74) 45%, rgba(15,36,55,0.93) 100%)',
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 62% 58% at 50% 46%, rgba(15,36,55,0.62) 0%, rgba(15,36,55,0.28) 55%, transparent 100%)',
+            }}
+            aria-hidden="true"
+          />
+        </>
+      )}
+
+      {/*
+        Textura. São duas, e a escolha depende do que está atrás:
+
+        - Com fundo de fotos, GRÃO DE FILME. As listras diagonais competiam com a
+          arquitetura das cenas e cortavam as fachadas. O grão faz o contrário:
+          amarra as seis cenas num acabamento só e disfarça o banding que o JPEG
+          deixa no céu azul-escuro, que é onde o degradê mais aparece.
+        - Sem fotos (páginas internas, gradiente chapado), as LISTRAS, que ali dão
+          profundidade a uma superfície que não tem nenhuma.
+
+        O grão é SVG inline, não data URI, para não depender do `img-src data:`
+        da CSP em `next.config.ts`.
+      */}
+      {fotos ? (
+        <svg
+          // Sem mix-blend: `overlay` e `soft-light` praticamente não mexem em
+          // tom quase preto, que é justamente onde o banding aparece. Ruído
+          // cinza em opacidade baixa levanta o preto o suficiente para quebrar
+          // as faixas do JPEG, e é assim que grão de filme funciona de verdade.
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]"
+          aria-hidden="true"
+        >
+          <filter id="grao-hero">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.82"
+              numOctaves="3"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#grao-hero)" />
+        </svg>
+      ) : (
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(115deg, #c8963e 0 1px, transparent 1px 26px)',
+          }}
+          aria-hidden="true"
+        />
+      )}
+      {/* Halo dourado de canto: dá calor à composição sem lavar o texto central. */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(115deg, #c8963e 0 1px, transparent 1px 26px)',
-        }}
-        aria-hidden="true"
-      />
-      {/* Halo dourado atrás do painel direito. */}
-      <div
-        className="pointer-events-none absolute -right-40 top-1/2 h-[38rem] w-[38rem] -translate-y-1/2 rounded-full opacity-25 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-1/2 h-[38rem] w-[38rem] -translate-y-1/2 rounded-full opacity-20 blur-3xl"
         style={{ background: 'radial-gradient(circle, #c8963e 0%, transparent 68%)' }}
         aria-hidden="true"
       />
@@ -61,17 +142,11 @@ export default function Hero({
           compacta ? 'py-16 md:py-20' : 'py-20 md:py-28 lg:py-32'
         }`}
       >
-        <div
-          className={`grid items-center gap-16 ${painel ? 'lg:grid-cols-[1.05fr_0.95fr]' : ''}`}
-        >
+        <div>
           {/* ── Coluna de texto ── */}
-          <div className={painel ? '' : 'mx-auto max-w-3xl text-center'}>
+          <div className="mx-auto max-w-4xl text-center">
             {eyebrow && (
-              <p
-                className={`animate-hero-in inline-flex items-center gap-2 rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e0bd77] ${
-                  painel ? '' : 'mx-auto'
-                }`}
-              >
+              <p className="animate-hero-in mx-auto inline-flex items-center gap-2 rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#e0bd77]">
                 {eyebrow}
               </p>
             )}
@@ -88,18 +163,14 @@ export default function Hero({
             </h1>
 
             <p
-              className={`animate-hero-in mt-7 text-lg leading-relaxed text-white/75 ${
-                painel ? 'max-w-xl' : 'mx-auto max-w-2xl'
-              }`}
+              className="animate-hero-in mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/75"
               style={{ animationDelay: '180ms' }}
             >
               {subtitulo}
             </p>
 
             <div
-              className={`animate-hero-in mt-10 flex flex-col gap-4 sm:flex-row ${
-                painel ? '' : 'justify-center'
-              }`}
+              className="animate-hero-in mt-10 flex flex-col justify-center gap-4 sm:flex-row"
               style={{ animationDelay: '270ms' }}
             >
               <a
@@ -111,16 +182,16 @@ export default function Hero({
                 <IconeWhatsApp className="h-5 w-5" />
                 Orçamento sem compromisso
               </a>
-              <Link
-                href="/servicos"
+              <CtaSecundario
+                href={ctaSecundarioHref}
                 className="group inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] border border-white/25 px-7 py-4 font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
               >
-                Ver serviços
+                {ctaSecundarioLabel}
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </Link>
+              </CtaSecundario>
             </div>
 
             <p
@@ -130,18 +201,11 @@ export default function Hero({
               Campo Grande MS · {BUSINESS.phoneFormatted} · Resposta em até 24h
             </p>
           </div>
-
-          {/* ── Painel de marca ── */}
-          {painel && (
-            <div className="animate-hero-in hidden lg:block" style={{ animationDelay: '380ms' }}>
-              <PainelMarca />
-            </div>
-          )}
         </div>
 
         {/* ── Selos ── */}
         {!compacta && (
-          <ul className="mt-16 grid gap-4 border-t border-white/10 pt-10 sm:grid-cols-3">
+          <ul className="mt-16 grid gap-4 border-t border-white/10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
             {SELOS.map(({ Icone, texto }, i) => (
               <li
                 key={texto}
