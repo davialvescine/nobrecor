@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Paleta Nobre Cor (não alterar sem pedido do dono) ── */
+  --color-azul-nobre: #1b3a5c; /* base, confiança — títulos e seções escuras */
+  --color-off-white: #f7f4ef; /* fundo claro */
+  --color-dourado: #c8963e; /* acento premium — CTA e destaques */
+  --color-dourado-escuro: #a87b2f; /* facetas do diamante, hover */
+  --color-aco: #5b7fa6; /* facetas, apoio */
+  --color-carvao: #2b2b2b; /* texto corrido */
+  --color-whatsapp: #25d366; /* ÚNICO verde do site — só WhatsApp */
+
+  /* ── Tipografia ── */
+  --font-display: var(--font-display-marca), "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-body: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+  --radius-btn: 0.5rem;
+
+  --shadow-card: 0 1px 3px 0 rgb(27 58 92 / 0.08), 0 1px 2px -1px rgb(27 58 92 / 0.08);
+  --shadow-card-hover: 0 18px 30px -12px rgb(27 58 92 / 0.22);
+  --shadow-cta: 0 18px 32px -12px rgb(200 150 62 / 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-carvao);
+    background-color: #ffffff;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+    Bebas Neue é só caixa-alta: o `text-transform` é explícito para que o texto
+    escrito em caixa mista no JSX renderize corretamente, e o `letter-spacing`
+    positivo compensa o aperto natural de uma condensada em corpo grande.
+  */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--color-azul-nobre);
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+  }
+
+  /* Em corpo muito grande, a condensada pede tracking menor para não abrir demais. */
+  h1 {
+    letter-spacing: 0.005em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-dourado);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Botão CTA dourado com texto azul-escuro.
+     Contraste aferido 5:1 — NÃO trocar para texto branco (cai para 2.1:1). */
+  .btn-dourado {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(135deg, #d9a94c 0%, var(--color-dourado) 55%, var(--color-dourado-escuro) 100%);
+    color: var(--color-azul-nobre);
+    box-shadow: var(--shadow-cta);
+    transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  /* Faixa de brilho atravessando o botão em loop. */
+  .btn-dourado::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.45), transparent);
+    transform: translateX(-120%);
+    animation: brilho 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .btn-dourado:hover {
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+    box-shadow: 0 22px 38px -12px rgb(200 150 62 / 0.65);
+  }
+
+  .btn-dourado:active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-dourado::after {
+      animation: none;
+      opacity: 0;
+    }
+
+    .btn-dourado:hover {
+      transform: none;
+    }
+  }
+
+  /* Linha dourada sob o título de seção. */
+  .heading-line::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    margin-top: 1rem;
+    background: var(--color-dourado);
+  }
+
+  .heading-line-center::after {
+    content: "";
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    margin: 1rem auto 0;
+    background: var(--color-dourado);
+  }
+
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-azul-nobre);
+    color: #fff;
+  }
+
+  .skip-to-content:focus {
+    left: 0;
+  }
+}
+
+/* ─────────────────────────────── Animações ─────────────────────────────── */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+/* Entrada da hero: escalonada por delay inline nos filhos. */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-in {
+  animation: hero-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Marquee de serviços. Translada 50% porque a lista é duplicada. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 48s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Brilho que atravessa o botão dourado a cada ciclo. */
+@keyframes brilho {
+  0% {
+    transform: translateX(-120%);
+  }
+  55%,
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+/* Gradiente lento no fundo azul das seções escuras. */
+@keyframes deslocar-fundo {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-fundo {
+  background-size: 200% 200%;
+  animation: deslocar-fundo 18s ease-in-out infinite;
+}
+
+/* Pulso do botão flutuante do WhatsApp: anel que expande e some. */
+@keyframes pulso-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgb(37 211 102 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgb(37 211 102 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(37 211 102 / 0);
+  }
+}
+
+.animate-pulso-whatsapp {
+  animation: pulso-whatsapp 2.4s ease-out infinite;
+}
+
+/* Sublinhado dourado que cresce no hover dos links de navegação. */
+.link-sublinhado {
+  position: relative;
+}
+
+.link-sublinhado::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1.5px;
+  width: 0;
+  background: var(--color-dourado);
+  transition: width 0.28s ease;
+}
+
+.link-sublinhado:hover::after,
+.link-sublinhado:focus-visible::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-fundo,
+  .animate-pulso-whatsapp,
+  .animate-hero-in,
+  .animate-fade-up {
+    animation: none !important;
+  }
+
+  .link-sublinhado::after {
+    transition: none;
+  }
+}

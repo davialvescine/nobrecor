@@ -1,0 +1,12 @@
+set -e
+echo "→ lint"
+npm run lint
+echo "→ type-check"
+npm run type-check
+echo "→ test"
+npm test -- --run
+echo "→ check:rotas"
+npm run check:rotas
+echo "→ build"
+npm run build
+echo "pre-push OK"

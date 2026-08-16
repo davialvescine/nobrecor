@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380">
+<rect width="600" height="380" fill="#F7F4EF"/>
+<g transform="translate(300,118) scale(1.0)">
+  <polygon points="0,-78 62,0 0,78 -62,0" fill="#1B3A5C"/>
+  <polygon points="0,-78 62,0 0,10" fill="#5B7FA6"/>
+  <polygon points="0,-78 -62,0 0,10" fill="#1B3A5C"/>
+  <polygon points="-62,0 0,10 0,78" fill="#C8963E"/>
+  <polygon points="62,0 0,10 0,78" fill="#A87B2F"/>
+</g>
+<text x="316" y="288" text-anchor="end" font-family="Marcellus" font-size="52" fill="#1B3A5C">Nobre</text>
+<text x="330" y="288" text-anchor="start" font-family="Marcellus" font-size="52" fill="#C8963E">Cor</text>
+<text x="300" y="326" text-anchor="middle" font-family="Arial" font-size="16" font-weight="600" letter-spacing="10" fill="#2B2B2B">PINTURAS</text>
+</svg>
