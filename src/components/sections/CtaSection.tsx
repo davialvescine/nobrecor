@@ -17,11 +17,30 @@ export default function CtaSection({
 }: CtaSectionProps) {
   return (
     <section
-      className="animate-fundo py-24 md:py-28"
+      className="animate-fundo relative overflow-hidden py-24 md:py-28"
       style={{ background: 'linear-gradient(135deg, #12293f 0%, #1b3a5c 60%, #12293f 100%)' }}
       aria-labelledby="cta-heading"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7">
+      {/* Ambientação, não obra da empresa (ver .claude/rules/conteudo.md). */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/fundos/cta-sala-classica.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(140deg, rgba(11,24,38,0.94) 0%, rgba(27,58,92,0.88) 50%, rgba(11,24,38,0.95) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7">
         <h2 id="cta-heading" className="font-display text-balance text-4xl leading-[1.06] text-white md:text-5xl lg:text-[3.6rem]">
           {titulo}
         </h2>

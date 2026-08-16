@@ -425,7 +425,8 @@ O gate só cobra bairro com `copyRevisada: true`. Os demais aparecem no relatór
    do `HeroSlideshow` — e só então pode ser legendada como obra.
 4. **Perfil da Empresa no Google** — categoria "Pintor", área Campo Grande, fotos toda semana,
    pedido de avaliação 5★ ao fim de cada obra. É o que mais move o ranking local.
-5. **Search Console + Bing Webmaster** — verificar e enviar o sitemap.
+5. **Search Console + Bing Webmaster** — destravou com o domínio no ar. Procedimento e o
+   comando de DNS para a verificação: **`docs/search-console.md`**. IndexNow já está ativo.
 6. **Copy hiperlocal dos 66 bairros restantes** — agente `copywriter-hiperlocal`, tier 2 primeiro.
 7. **Blog** — ainda não migrado. Os 3 artigos SEO estão em
    `~/Downloads/nobrecor-projeto/site/blog/`.

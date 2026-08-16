@@ -31,8 +31,33 @@ const ETAPAS = [
 
 export default function ProcessoSection() {
   return (
-    <section id="processo" className="animate-fundo scroll-mt-20 py-24 md:py-28" style={{ background: 'linear-gradient(135deg, #0f2437 0%, #1b3a5c 55%, #16324f 100%)' }} aria-labelledby="processo-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="processo"
+      className="animate-fundo relative scroll-mt-20 overflow-hidden py-24 md:py-28"
+      style={{ background: 'linear-gradient(135deg, #0f2437 0%, #1b3a5c 55%, #16324f 100%)' }}
+      aria-labelledby="processo-heading"
+    >
+      {/* Equipe de macacão azul, a cor da marca, sob véu profundo. Ambientação:
+          NÃO é obra da Nobre Cor (ver .claude/rules/conteudo.md). */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/fundos/processo-salao.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(150deg, rgba(15,36,55,0.93) 0%, rgba(27,58,92,0.88) 55%, rgba(11,24,38,0.94) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TituloSecao
           id="processo-heading"
           eyebrow="Como trabalhamos"

@@ -31,6 +31,26 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  /**
+   * Verificação de propriedade nos buscadores.
+   *
+   * O caminho PREFERIDO é o registro TXT no DNS (propriedade de domínio no
+   * Search Console): cobre http, https, www e todo subdomínio de uma vez, e o
+   * DNS está na Vercel, a um comando de distância. Estas variáveis existem para
+   * o caso de o Google oferecer só a verificação por meta tag — aí basta
+   * definir a env var e publicar, sem tocar no código.
+   *
+   * Só emite a tag quando a variável existe: meta de verificação vazia é lixo
+   * no <head> de 217 páginas.
+   */
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION && {
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    }),
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION && {
+      other: { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION },
+    }),
+  },
   title: {
     default: 'Pintor Profissional em Campo Grande MS | Nobre Cor Pinturas',
     // Sufixo curto de propósito: "| Nobre Cor" custa 11 chars e cabe nos 60 do Google.

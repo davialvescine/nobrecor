@@ -15,10 +15,31 @@ export default function BairrosSection() {
   return (
     <section
       id="bairros"
-      className="scroll-mt-20 bg-white py-24 md:py-28"
+      className="relative scroll-mt-20 overflow-hidden bg-white py-24 md:py-28"
       aria-labelledby="bairros-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Seção CLARA: a foto entra bem rebaixada, só para dar matéria ao fundo.
+          Os chips de bairro são o conteúdo e precisam continuar legíveis.
+          Ambientação, não obra da empresa (ver .claude/rules/conteudo.md). */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/fundos/bairros-fachada.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 75% at 50% 45%, rgba(255,255,255,0.975) 0%, rgba(255,255,255,0.94) 60%, rgba(247,244,239,0.86) 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TituloSecao
           id="bairros-heading"
           eyebrow="Onde atendemos"
