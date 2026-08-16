@@ -64,11 +64,12 @@ arquitetura de SEO, arquivos de robô, gates de CI, animações. Não refazer.
 
 Responsável: dono + `fase-executor`.
 
-- Telefone comercial real no lugar do placeholder (`src/lib/business.ts`).
-- Registrar `nobrecor.com.br` no registro.br e garantir o @ no Instagram.
-- Criar propriedade do Google Analytics 4 e definir `NEXT_PUBLIC_GA_ID` na Vercel.
+- ✅ Telefone comercial real já configurado (`(67) 98152-2412`).
+- ⬜ Registrar `nobrecor.com.br` no registro.br e garantir o @ no Instagram.
+- ⬜ Criar propriedade do Google Analytics 4 e definir `NEXT_PUBLIC_GA_ID` na Vercel.
 
-**Não publica enquanto o `check:rotas` estiver avisando placeholder.**
+O `check:rotas` valida o telefone (formato E.164 e coerência entre `phone` e
+`whatsappNumero`) e falha o CI se alguém quebrar isso.
 
 ### 1.2 Deploy
 

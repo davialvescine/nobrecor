@@ -129,6 +129,7 @@ nobrecor/
 │   │   ├── [landing]/                      matriz serviço-bairro (105 hoje)
 │   │   ├── sobre/ · contato/
 │   │   ├── sitemap.ts · robots.ts · not-found.tsx
+│   │   ├── opengraph-image.tsx            imagem de preview de link
 │   │   └── layout.tsx
 │   ├── components/
 │   │   ├── layout/      Header · Footer · PageWrapper
@@ -266,6 +267,10 @@ Next, React Hooks e acessibilidade. A checagem de tipos continua com `tsc --noEm
 
 Quando o typescript-eslint suportar TS 7, dá para voltar ao `eslint-config-next`.
 
+**Regra desligada de propósito:** `jsx-a11y/prefer-tag-over-role`. Ela assume HTML e sugere
+trocar `role="img"` por `<img>`, mas em **SVG inline** `role="img"` + `aria-label` é o padrão
+recomendado de acessibilidade. Seguir a regra significaria perder o SVG (e a logo vetorial).
+
 ---
 
 ## 9. Animações
@@ -287,7 +292,97 @@ nunca pode esconder texto do crawler.
 
 ---
 
-## 10. TAREFAS PENDENTES (ordem de prioridade)
+## 10. WhatsApp: o canal de conversão
+
+Todo CTA do site leva para o WhatsApp, e **nenhum link pode abrir a conversa em branco**.
+
+`buildWhatsAppLink()` (em `src/lib/business.ts`) usa `MENSAGEM_PADRAO` sempre que não recebe
+texto. Isso não é preciosismo: o botão do cabeçalho e o CTA da hero chamavam a função sem
+argumento e abriam o app vazio, justamente nos dois pontos de maior clique do site. Há 4 testes
+garantindo que `?text=` sempre existe.
+
+A mensagem se adapta ao que a página sabe:
+
+| Onde | Mensagem que chega |
+|---|---|
+| Home, cabeçalho, páginas gerais | `Olá! Vim pelo site e gostaria de um orçamento de pintura. Pode me ajudar?` |
+| Página de bairro | acrescenta `Bairro: <nome>` |
+| Landing serviço × bairro | acrescenta `Serviço: <nome>` e `Bairro: <nome>` |
+
+Efeito colateral útil: dá para saber pela própria mensagem qual página trouxe o lead, sem
+precisar perguntar ao cliente.
+
+O verde `#25D366` é o **único** verde do site e existe só aqui.
+
+---
+
+## 11. Imagem de preview de link (WhatsApp, Instagram, Facebook)
+
+Gerada no build por `src/app/opengraph-image.tsx`, e não por um `.jpg` solto em `public/`.
+Assim ela nunca fica desatualizada em relação ao telefone e à marca.
+
+Dois detalhes que já causaram bug e não devem ser desfeitos:
+
+1. **`buildMetadata` declara a imagem explicitamente.** O Next não faz merge profundo de
+   metadata: toda página que declara `openGraph` próprio descarta a imagem que a convenção de
+   arquivo injetaria. Sem essa linha, só a home tinha `og:image` e as outras 216 páginas saíam
+   sem imagem no card.
+2. **Duas fontes registradas no `ImageResponse`.** O Satori não tem fallback para `sans-serif`:
+   ele usa a única fonte registrada. Com só a Bebas, a linha de apoio saía condensada e em
+   caixa-alta, ilegível no card pequeno da conversa.
+
+O WhatsApp busca a imagem **uma vez** e guarda em cache por bastante tempo. Depois do deploy,
+se precisar forçar atualização, use o depurador de compartilhamento do Facebook (o WhatsApp usa
+a mesma infraestrutura de scraping).
+
+---
+
+## 12. Modelo de conteúdo
+
+O que impede thin content não é o template, são os campos por item. Cada serviço e cada bairro
+carrega conteúdo que só faz sentido para ele.
+
+**Serviço** (`src/content/servicos.ts`):
+
+| Campo | Papel |
+|---|---|
+| `inclui[]` | itens curtos da linha "Inclui:" no card. Frases nominais, sem verbo |
+| `etapas[]` | passo a passo REAL da execução daquele serviço. É o que diferencia página de panfleto |
+| `erroComum` | o erro que mais aparece quando o serviço é feito às pressas. Conteúdo de ofício |
+| `faq[]` | mínimo 2 perguntas; há teste garantindo |
+| `nomeSeo` | nome curto para o `<title>` quando o completo estoura 60 chars |
+
+**Bairro** (`src/content/bairros.ts`):
+
+| Campo | Papel |
+|---|---|
+| `contexto[]` | 3–4 parágrafos sobre como o perfil do bairro muda a execução da obra |
+| `copyRevisada` | `true` só quando a copy hiperlocal foi escrita. Bairro novo nasce `false` |
+| `pontosReferencia[]` | só o que foi VERIFICADO. Vazio é resposta correta; o template omite o bloco |
+| `oficialPlanurb` | `false` para área conhecida que não é bairro na divisão oficial |
+| `nomeSeo` | nome curto para o `<title>` |
+
+### Como o `check:thin-content` cobra
+
+O mínimo varia com a **intenção** da página, não é número único: cobrar 700 palavras de
+"demarcação de pisos" (serviço de escopo estreito) só produziria enrolação, que é exatamente o
+que o Google penaliza.
+
+| Tipo | Mínimo de palavras únicas |
+|---|---|
+| Home | 400 |
+| Serviço estrela | 700 |
+| Serviço 'alto' | 600 |
+| Serviço 'medio' | 500 |
+| Bairro | 500 |
+| Landing serviço × bairro | 450 |
+
+O gate só cobra bairro com `copyRevisada: true`. Os demais aparecem no relatório como
+**PENDENTE**, nunca como aprovado silencioso.
+
+---
+
+## 13. TAREFAS PENDENTES (ordem de prioridade)
 
 1. **Registrar `nobrecor.com.br`** no registro.br (~R$40/ano) + garantir o @ no Instagram.
 2. **Deploy na Vercel** e apontar o domínio. Definir `NEXT_PUBLIC_GA_ID`. Rodar `deploy-verifier`.
@@ -303,9 +398,20 @@ nunca pode esconder texto do crawler.
 8. **Depoimentos reais** quando existirem (com `Review` no schema só então).
 9. **Onda 2 da matriz** — só depois dos gates da seção 6.
 
+### Decisões em aberto (precisam do dono)
+
+- **Visibilidade do repositório.** Hoje está **público**. O `docs/relatorio-pesquisa.md` traz a
+  análise de concorrentes e a estratégia de SEO à mostra. Para fechar:
+  `gh repo edit davialvescine/nobrecor --visibility private`.
+- **MCP do Magnific.** Servidor adicionado (`https://mcp.magnific.com`), status
+  *Needs authentication*. Autenticar com `/mcp` dentro do Claude Code (o `!` do shell não
+  serve: o fluxo OAuth precisa de terminal interativo). Vale lembrar que o Magnific faz
+  *upscale* e geração de imagem — ele melhora foto que já existe, não substitui foto de obra
+  real para o portfólio.
+
 ---
 
-## 11. O que NÃO fazer
+## 14. O que NÃO fazer
 
 - Não inventar depoimento, nota, preço, ponto de referência ou obra.
 - Não subir `ONDA_ATIVA` sem os gates de indexação.
@@ -315,11 +421,15 @@ nunca pode esconder texto do crawler.
 - Não trocar o texto do botão dourado para branco.
 - Não usar verde em nada além do WhatsApp.
 - Não usar `HUSKY=0` nem `--no-verify`.
+- Não chamar `buildWhatsAppLink()` de um jeito que abra a conversa em branco.
+- Não remover o `images` explícito do `buildMetadata`: as páginas internas ficam sem preview.
+- Não marcar `copyRevisada: true` em bairro sem a copy hiperlocal escrita.
+- Não inventar `pontosReferencia`: array vazio é a resposta correta quando não há fonte.
 - Não rebaixar o TypeScript para fazer o ESLint funcionar (foi decisão consciente).
 
 ---
 
-## 12. Serviços removidos do catálogo
+## 15. Serviços removidos do catálogo
 
 Por decisão do dono em 16/08/2026, saíram do catálogo:
 
@@ -329,16 +439,10 @@ Por decisão do dono em 16/08/2026, saíram do catálogo:
 Não reintroduzir sem pedido explícito. As menções em copy foram substituídas por
 grafiato, marmorato e pintura decorativa, que continuam no catálogo.
 
-### Nota sobre `jsx-a11y/prefer-tag-over-role`
-
-A regra está desligada em `.oxlintrc.json`. Ela assume HTML e sugere trocar
-`role="img"` por `<img>`, mas em **SVG inline** `role="img"` + `aria-label` é
-justamente o padrão recomendado de acessibilidade — seguir a regra significaria
-perder o SVG (e a logo vetorial da marca).
 
 ---
 
-## 13. Decisões de design registradas (16/08/2026)
+## 16. Decisões de design registradas (16/08/2026)
 
 | Decisão | Motivo |
 |---|---|
@@ -350,3 +454,6 @@ perder o SVG (e a logo vetorial da marca).
 | FAQ em `<details>` | Conteúdo no DOM desde o primeiro byte (ver §7) |
 | `Reveal` com `rootMargin` positivo | Dispara antes de entrar na viewport; margem negativa deixava o bloco em branco na rolagem rápida |
 | Cards de serviço com ícone + "Inclui:" | Referência: altacor.com.br. Deixa o card legível de relance |
+| `og:image` gerado no build | O caminho fixo apontava para arquivo inexistente: card saía sem imagem |
+| `images` explícito no `buildMetadata` | Sem ele, só a home tinha preview; as outras 216 páginas não |
+| Link do WhatsApp nunca em branco | Cabeçalho e hero abriam o app vazio, perdendo o contexto do lead |
