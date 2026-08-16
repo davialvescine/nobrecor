@@ -55,8 +55,8 @@ export default function SobrePage() {
             É aí que os mais de 20 anos de experiência pesam. Superfície mal lida gera serviço
             refeito, e serviço refeito é prejuízo dos dois lados. Por isso toda obra começa com
             avaliação técnica no local: o estado real da parede define o preparo, o preparo define
-            o material e só então existe um número. Orçamento por telefone, sem ver a obra, é chute
-            — e chute em pintura sempre aparece depois.
+            o material e só então existe um número. Orçamento por telefone, sem ver a obra, é
+            chute, e chute em pintura sempre aparece depois.
           </p>
           <p className="mt-5 text-[#2b2b2b]/80 leading-relaxed">
             A Nobre Cor trabalha com um processo fixo de cinco etapas, do primeiro contato à

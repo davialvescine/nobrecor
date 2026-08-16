@@ -14,7 +14,7 @@ import { BUSINESS } from '@/lib/business'
  * suficiente para ler no card pequeno da conversa.
  */
 
-export const alt = `${BUSINESS.legalName} — Pintura de alto padrão em Campo Grande MS`
+export const alt = `${BUSINESS.legalName}: pintura de alto padrão em Campo Grande MS`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

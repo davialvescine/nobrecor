@@ -62,15 +62,15 @@ export default function FundadorSection() {
             <div className="mt-7 space-y-5 leading-relaxed text-[#2b2b2b]/80">
               <p>
                 A Nobre Cor não começou num escritório. Começou em canteiro de obra, com mais de
-                20 anos de pintura residencial, comercial e predial executada em Campo Grande MS
-                — parede por parede, fachada por fachada.
+                20 anos de pintura residencial, comercial e predial executada em Campo Grande MS,
+                parede por parede, fachada por fachada.
               </p>
               <p>
                 Vinte anos mudam o que se enxerga numa parede. É a diferença entre orçar por metro
                 quadrado e orçar depois de entender <em>por que</em> a tinta soltou naquele trecho:
                 se é umidade subindo do baldrame, massa aplicada sobre superfície ainda úmida ou
                 tinta que não era para aquele substrato. Preparo malfeito não aparece na entrega.
-                Aparece dois anos depois, em bolha, trinca e descascado — e aí o barato saiu caro
+                Aparece dois anos depois, em bolha, trinca e descascado, e aí o barato saiu caro
                 para o cliente.
               </p>
               <p>

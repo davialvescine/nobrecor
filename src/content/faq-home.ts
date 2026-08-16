@@ -44,22 +44,22 @@ export const FAQ_HOME: FaqItem[] = [
   {
     pergunta: 'Qual a melhor época do ano para pintar em Campo Grande?',
     resposta:
-      'A estação seca, de maio a setembro, é a janela ideal para pintura externa em Campo Grande: a tinta cura sem interrupção e o cronograma não trava por chuva. Pintura interna pode ser feita o ano inteiro. Na época de chuva a fachada continua viável, apenas com cronograma planejado por trechos, acompanhando a previsão — o que muda é a logística, não a qualidade.',
+      'A estação seca, de maio a setembro, é a janela ideal para pintura externa em Campo Grande: a tinta cura sem interrupção e o cronograma não trava por chuva. Pintura interna pode ser feita o ano inteiro. Na época de chuva a fachada continua viável, apenas com cronograma planejado por trechos, acompanhando a previsão. O que muda é a logística, não a qualidade.',
   },
   {
     pergunta: 'Quantas demãos de tinta são necessárias?',
     resposta:
-      'Em regra, duas demãos sobre superfície bem preparada e seladora ou fundo quando a parede pede. Cor escura sobre parede clara, ou o contrário, costuma exigir uma terceira demão para cobrir por igual. O que define o resultado não é a quantidade de tinta, e sim o intervalo respeitado entre as demãos e a preparação anterior — demão sobre tinta ainda úmida é a receita do acabamento manchado.',
+      'Em regra, duas demãos sobre superfície bem preparada e seladora ou fundo quando a parede pede. Cor escura sobre parede clara, ou o contrário, costuma exigir uma terceira demão para cobrir por igual. O que define o resultado não é a quantidade de tinta, e sim o intervalo respeitado entre as demãos e a preparação anterior. Demão sobre tinta ainda úmida é a receita do acabamento manchado.',
   },
   {
     pergunta: 'Como vocês tratam mofo e umidade antes de pintar?',
     resposta:
-      'Pintar por cima de mofo não resolve: ele atravessa a tinta nova em poucas semanas. Primeiro identificamos a causa — infiltração, umidade que sobe do piso ou condensação por falta de ventilação. Depois a superfície é lavada com solução específica, recebe fundo preparador e, quando há infiltração ativa, indicamos a correção antes da pintura. É por isso que a avaliação técnica no local vem antes de qualquer orçamento.',
+      'Pintar por cima de mofo não resolve: ele atravessa a tinta nova em poucas semanas. Primeiro identificamos a causa: infiltração, umidade que sobe do piso ou condensação por falta de ventilação. Depois a superfície é lavada com solução específica, recebe fundo preparador e, quando há infiltração ativa, indicamos a correção antes da pintura. É por isso que a avaliação técnica no local vem antes de qualquer orçamento.',
   },
   {
     pergunta: 'Vocês ajudam na escolha das cores?',
     resposta:
-      'Ajudamos. Orientamos a escolha considerando a luz de cada ambiente, o pé-direito e o uso do espaço — a mesma cor muda completamente entre uma parede que recebe sol da tarde e um corredor sem janela. E antes de pintar a área toda, aplicamos amostra na própria parede para você aprovar a cor onde ela vai viver, não no leque da loja.',
+      'Ajudamos. Orientamos a escolha considerando a luz de cada ambiente, o pé-direito e o uso do espaço. A mesma cor muda completamente entre uma parede que recebe sol da tarde e um corredor sem janela. E antes de pintar a área toda, aplicamos amostra na própria parede para você aprovar a cor onde ela vai viver, não no leque da loja.',
   },
   {
     pergunta: 'Pintura de fachada pode ser feita em prédio ocupado?',
