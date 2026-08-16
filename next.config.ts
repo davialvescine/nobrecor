@@ -7,7 +7,10 @@ import type { NextConfig } from 'next'
  */
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  // 'unsafe-eval' SÓ em dev: o React de desenvolvimento usa eval() para
+  // reconstruir stack traces e, sem a liberação, o console enche de erro de
+  // CSP. Em produção o React nunca chama eval — e a política continua sem ele.
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://www.google-analytics.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",

@@ -1,6 +1,7 @@
 import { GRUPOS, SERVICOS } from '@/content/servicos'
 import CatalogoServicos from './CatalogoServicos'
 import TituloSecao from '@/components/ui/TituloSecao'
+import { Diamante } from '@/components/ui/Logo'
 
 interface ServicosSectionProps {
   titulo?: string
@@ -40,10 +41,37 @@ export default function ServicosSection({
   return (
     <section
       id="servicos"
-      className="scroll-mt-20 bg-[#f7f4ef] py-24 md:py-28"
+      className="relative scroll-mt-20 overflow-hidden py-24 md:py-28"
+      style={{
+        // Off-white com um miolo levemente mais quente: o chapado #f7f4ef puro
+        // deixava a seção morta ao lado das seções escuras (apontado pelo dono).
+        background: 'linear-gradient(180deg, #f7f4ef 0%, #f1eadb 45%, #f7f4ef 100%)',
+      }}
       aria-labelledby="servicos-heading"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Listras finas douradas: saíram da hero (brigavam com as fotos) e
+          vivem aqui, onde o fundo chapado precisa delas. */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(115deg, #c8963e 0 1px, transparent 1px 26px)',
+        }}
+        aria-hidden="true"
+      />
+      {/* Halo dourado atrás do título. */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[46rem] -translate-x-1/2 -translate-y-1/3 rounded-full blur-3xl"
+        style={{ background: 'radial-gradient(ellipse, rgba(200,150,62,0.22) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
+      {/* Diamante da marca em marca d'água. */}
+      <Diamante
+        className="pointer-events-none absolute -right-20 top-16 h-80 w-80 opacity-[0.06]"
+        variante="claro"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <TituloSecao
           id="servicos-heading"
           eyebrow="Catálogo completo"
