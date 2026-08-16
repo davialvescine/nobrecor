@@ -42,14 +42,14 @@ export default function ServicosSection({
     <section
       id="servicos"
       className="relative scroll-mt-20 overflow-hidden py-24 md:py-28"
-      style={{ background: '#f7f4ef' }}
+      style={{ background: '#0f2437' }}
       aria-labelledby="servicos-heading"
     >
       {/*
-        Foto do rolo aplicando tinta como textura de fundo (pedido do dono em
-        16/08/2026), quase toda coberta por um véu off-white: ela aparece nas
-        bordas e dá matéria à seção, sem disputar com os cards. O véu é mais
-        denso no miolo, onde o texto dos cards precisa de contraste.
+        Seção ESCURA (pedido do dono em 16/08/2026, "mais escuro ainda"): foto
+        do rolo como textura sob véu azul profundo. Os cards brancos viram o
+        elemento mais claro da página e saltam do fundo — a versão clara os
+        deixava rentes.
       */}
       <div
         className="absolute inset-0"
@@ -64,14 +64,13 @@ export default function ServicosSection({
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 75% 70% at 50% 45%, rgba(247,244,239,0.97) 0%, rgba(247,244,239,0.93) 60%, rgba(247,244,239,0.80) 100%)',
+            'linear-gradient(175deg, rgba(11,24,38,0.93) 0%, rgba(15,36,55,0.86) 45%, rgba(11,24,38,0.94) 100%)',
         }}
         aria-hidden="true"
       />
-      {/* Listras finas douradas: saíram da hero (brigavam com as fotos) e
-          vivem aqui, onde amarram a textura. */}
+      {/* Listras finas douradas amarrando a textura. */}
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
             'repeating-linear-gradient(115deg, #c8963e 0 1px, transparent 1px 26px)',
@@ -81,13 +80,13 @@ export default function ServicosSection({
       {/* Halo dourado atrás do título. */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[46rem] -translate-x-1/2 -translate-y-1/3 rounded-full blur-3xl"
-        style={{ background: 'radial-gradient(ellipse, rgba(200,150,62,0.22) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(ellipse, rgba(200,150,62,0.20) 0%, transparent 70%)' }}
         aria-hidden="true"
       />
       {/* Diamante da marca em marca d'água. */}
       <Diamante
-        className="pointer-events-none absolute -right-20 top-16 h-80 w-80 opacity-[0.06]"
-        variante="claro"
+        className="pointer-events-none absolute -right-20 top-16 h-80 w-80 opacity-[0.08]"
+        variante="escuro"
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,6 +95,7 @@ export default function ServicosSection({
           eyebrow="Catálogo completo"
           titulo={titulo}
           subtitulo={subtitulo}
+          escuro
         />
 
         <CatalogoServicos grupos={grupos} itens={itens} />

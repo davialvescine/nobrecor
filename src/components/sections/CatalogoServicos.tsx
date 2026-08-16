@@ -28,11 +28,15 @@ interface GrupoCatalogo {
 
 type ItemCatalogo = ServicoCardData & { grupo: string }
 
+/*
+ * Chips para a seção ESCURA. O ativo é dourado com texto azul-escuro — a mesma
+ * regra de contraste do botão dourado (.claude/rules/marca.md: nunca branco).
+ */
 const CHIP_BASE =
   'rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200'
 const CHIP_INATIVO =
-  'border-[#1b3a5c]/20 bg-white text-[#1b3a5c] hover:-translate-y-0.5 hover:border-[#c8963e]'
-const CHIP_ATIVO = 'border-[#1b3a5c] bg-[#1b3a5c] text-white shadow-md'
+  'border-white/25 bg-white/[0.06] text-white/85 hover:-translate-y-0.5 hover:border-[#c8963e] hover:text-white'
+const CHIP_ATIVO = 'border-[#c8963e] bg-[#c8963e] text-[#1b3a5c] shadow-md'
 
 export default function CatalogoServicos({
   grupos,
