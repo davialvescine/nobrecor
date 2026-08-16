@@ -10,6 +10,11 @@ import {
 } from '@/lib/landing-pages'
 import { buildMetadata, buildTituloLanding, TITLE_MAX } from '@/lib/seo'
 import { buildLocalBusinessSchema, buildFaqSchema } from '@/lib/schema'
+import {
+  buildWhatsAppLink,
+  buildWhatsAppMessage,
+  MENSAGEM_PADRAO,
+} from '@/lib/business'
 
 const SLUG_VALIDO = /^[a-z0-9]+(-[a-z0-9]+)*$/
 
@@ -170,5 +175,29 @@ describe('schema JSON-LD', () => {
     const faq = buildFaqSchema([{ pergunta: 'P?', resposta: 'R.' }])
     expect(faq.mainEntity[0]!.name).toBe('P?')
     expect(faq.mainEntity[0]!.acceptedAnswer.text).toBe('R.')
+  })
+})
+
+describe('WhatsApp', () => {
+  it('nenhum link sai sem texto pré-preenchido', () => {
+    // Conversa em branco desperdiça o contexto no ponto de maior clique do site.
+    for (const link of [buildWhatsAppLink(), buildWhatsAppLink(''), buildWhatsAppLink('   ')]) {
+      expect(link, `link sem ?text=: ${link}`).toContain('?text=')
+    }
+  })
+
+  it('usa o número comercial real, só com dígitos', () => {
+    expect(buildWhatsAppLink()).toMatch(/^https:\/\/wa\.me\/55\d{10,11}\?text=/)
+  })
+
+  it('a mensagem contextual carrega serviço e bairro', () => {
+    const msg = buildWhatsAppMessage('Pintura de Fachada', 'Chácara Cachoeira')
+    expect(msg).toContain('Vim pelo site')
+    expect(msg).toContain('Serviço: Pintura de Fachada')
+    expect(msg).toContain('Bairro: Chácara Cachoeira')
+  })
+
+  it('sem contexto, cai na mensagem padrão', () => {
+    expect(buildWhatsAppMessage()).toBe(MENSAGEM_PADRAO)
   })
 })

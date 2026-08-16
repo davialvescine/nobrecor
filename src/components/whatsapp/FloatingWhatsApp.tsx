@@ -13,10 +13,9 @@ export function IconeWhatsApp({ className }: { className?: string }) {
 }
 
 export default function FloatingWhatsApp({ mensagem }: { mensagem?: string }) {
-  const link = buildWhatsAppLink(
-    mensagem ||
-      'Olá! Vim pelo site da Nobre Cor e gostaria de um orçamento de pintura. Pode me ajudar?'
-  )
+  // Sem fallback local: quem define o texto padrão é o `buildWhatsAppLink`,
+  // para a mensagem existir num lugar só.
+  const link = buildWhatsAppLink(mensagem)
 
   return (
     <a

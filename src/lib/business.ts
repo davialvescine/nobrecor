@@ -83,14 +83,39 @@ export const BUSINESS = {
  */
 export const SITE_URL = new URL(BUSINESS.url).origin
 
+/**
+ * Mensagem padrão de abertura da conversa.
+ *
+ * Sai pré-preenchida no WhatsApp para que a pessoa só aperte enviar. Duas
+ * razões: reduz o atrito de quem não sabe como começar, e faz toda conversa
+ * chegar já identificada como vinda do site (dá para medir a origem do lead
+ * sem depender de o cliente contar).
+ */
+export const MENSAGEM_PADRAO =
+  'Olá! Vim pelo site e gostaria de um orçamento de pintura. Pode me ajudar?'
+
+/**
+ * Monta o link do wa.me.
+ *
+ * Sem argumento, usa a MENSAGEM_PADRAO em vez de abrir a conversa em branco.
+ * Isso não é detalhe: o botão do cabeçalho e o CTA da hero chamavam esta função
+ * sem parâmetro e abriam o WhatsApp vazio, jogando fora justamente o contexto
+ * nos dois pontos de maior clique do site.
+ */
 export function buildWhatsAppLink(mensagem?: string): string {
-  const base = `https://wa.me/${BUSINESS.whatsappNumero}`
-  if (!mensagem) return base
-  return `${base}?text=${encodeURIComponent(mensagem)}`
+  const texto = mensagem?.trim() || MENSAGEM_PADRAO
+  return `https://wa.me/${BUSINESS.whatsappNumero}?text=${encodeURIComponent(texto)}`
 }
 
+/**
+ * Mensagem contextual: acrescenta serviço e bairro quando a página souber.
+ * A quebra de linha real (`\n`) é preservada pelo encodeURIComponent e chega
+ * formatada no app.
+ */
 export function buildWhatsAppMessage(servico?: string, bairro?: string): string {
-  const partes = ['Olá! Vim pelo site da Nobre Cor e gostaria de um orçamento de pintura.']
+  if (!servico && !bairro) return MENSAGEM_PADRAO
+
+  const partes = ['Olá! Vim pelo site e gostaria de um orçamento de pintura.']
   if (servico) partes.push(`Serviço: ${servico}`)
   if (bairro) partes.push(`Bairro: ${bairro}`)
   partes.push('Pode me ajudar?')
