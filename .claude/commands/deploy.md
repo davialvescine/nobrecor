@@ -5,10 +5,11 @@ description: Publica na Vercel seguindo o procedimento completo (CI → push →
 1. Rode `npm run ci` completo. Falhou qualquer etapa → PARE e corrija.
 2. Confira as pendências que travam produção:
    - telefone: o `check:rotas` valida formato E.164 e coerência entre `phone` e `whatsappNumero`
-   - `NEXT_PUBLIC_GA_ID` configurado na Vercel
-   - `SITE_URL` = https://nobrecor.com.br
+   - `NEXT_PUBLIC_GA_ID` configurado na Vercel (pendente enquanto a propriedade GA não existir)
+   - `SITE_URL` = https://nobrecorpinturas.com.br (domínio decidido em 16/08/2026)
 3. Commit em Conventional Commits (português, sem emoji) e push em `main`.
-4. Acompanhe o build na Vercel. (Não há CI no GitHub: o gate já rodou na sua máquina.)
+4. Publique com `vercel deploy --prod --yes --scope davialvescine` (projeto `nobrecor`;
+   não há integração Git na Vercel nem CI no GitHub: o gate já rodou na sua máquina).
 5. Rode o agente `deploy-verifier` contra produção.
 6. Se o veredito for ROLLBACK, promova o deployment anterior no painel e reporte a causa.
 7. Atualize o CLAUDE.md se a estrutura ou os números mudaram.
