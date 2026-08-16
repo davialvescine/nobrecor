@@ -12,6 +12,10 @@ Rode o CI local completo da Nobre Cor, na ordem, e reporte o resultado de cada e
 
 Atalho: `npm run ci` roda tudo na ordem.
 
+Este é o ÚNICO CI do projeto: não há workflow no GitHub Actions, por decisão do dono. O hook
+`pre-push` do husky roda o mesmo conjunto e barra o push se algo falhar — conferir que está
+ativo com `git config core.hooksPath` (deve responder `.husky/_`).
+
 Regras:
 - Falhou qualquer etapa → NÃO commitar/pushar; corrigir e rodar de novo.
 - NUNCA usar `HUSKY=0` / `--no-verify`.

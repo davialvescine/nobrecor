@@ -42,7 +42,7 @@ Conduzido pelo `fase-executor`, sem pular etapa:
 2. Conteúdo      copywriter-hiperlocal escreve ANTES do código
 3. Implementação Server Components, next/image, zero dependência nova sem motivo
 4. Auditores     seo-auditor + schema-auditor (bloqueantes)
-5. CI local      npm run ci  (lint + type-check + test + rotas + build)
+5. CI local      npm run ci  (lint + type-check + test + rotas + build) - NÃO há Actions
 6. Commit/push   Conventional Commits em português, sem emoji
 7. Deploy        Vercel
 8. Verificação   deploy-verifier

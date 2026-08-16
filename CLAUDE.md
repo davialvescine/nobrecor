@@ -107,10 +107,8 @@ nobrecor/
 │   │                    deploy-verifier · fase-executor
 │   ├── commands/        /ci · /deploy · /onda
 │   └── rules/           conteudo.md · marca.md · nextjs.md
-├── .github/
-│   ├── workflows/ci.yml
-│   └── dependabot.yml
-├── .husky/pre-push      lint + type-check + test + rotas + build
+├── .github/dependabot.yml            só atualização de dependência
+├── .husky/pre-push      GATE: lint + type-check + test + rotas + build
 ├── docs/
 │   └── relatorio-pesquisa.md      pesquisa de concorrentes, SEO e serviços
 ├── public/
@@ -151,7 +149,13 @@ nobrecor/
 ## 5. Base de bairros
 
 81 entradas em `src/content/bairros.ts`, agrupadas nas 7 regiões urbanas da PLANURB.
-Procedência de cada lista: `docs/bairros-campo-grande.md`.
+
+**Procedência, divergências e como validar: `docs/bairros-campo-grande.md`.** Resumo do que
+está lá: a lista veio de uma série jornalística que cobre as 7 regiões nomeadamente; o
+documento oficial da PLANURB não foi consultado com sucesso (os mapas são imagem escaneada e o
+Perfil Socioeconômico retorna HTTP 500). Fontes atuais citam 79 bairros e a nossa base tem 80
+oficiais, então **um ou dois nomes podem ser parcelamento e não bairro**. Nenhum deles é tier 1,
+então a onda 1 não é afetada — mas validar antes das ondas 2 e 3.
 
 **Decisões registradas (pedidos do dono, 16/08/2026):**
 - "Los Angeles" e "Aquários" **não entram** (há teste que garante isso).
@@ -256,6 +260,21 @@ npm run build
 ```
 
 Slash commands: `/ci` · `/deploy` · `/onda`.
+
+### O CI é LOCAL, não no GitHub
+
+Decisão do dono em 16/08/2026: **não existe workflow de CI no GitHub Actions.** O gate é a
+máquina, e roda em dois momentos:
+
+1. `npm run ci` antes de todo commit — manual, mas obrigatório;
+2. hook `pre-push` do husky — automático, barra o push se qualquer etapa falhar.
+
+O `.github/` guarda só o `dependabot.yml`, que é atualização de dependência e não CI.
+
+⚠️ **O hook só existe depois de `npm run prepare`.** É ele que define `core.hooksPath` para
+`.husky/_`. Ter o husky no `package.json` NÃO basta: neste projeto o hook ficou inativo por
+horas e vários pushes passaram sem gate nenhum. Depois de clonar o repositório, rode
+`npm install` (que dispara o `prepare`) e confira com `git config core.hooksPath`.
 
 ### Por que oxlint no lugar do ESLint
 
