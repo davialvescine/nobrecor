@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Bebas_Neue, Plus_Jakarta_Sans } from 'next/font/google'
 import '@/styles/globals.css'
-import { BUSINESS, SITE_URL, OG_DEFAULT } from '@/lib/business'
+import { BUSINESS, SITE_URL } from '@/lib/business'
 import {
   buildLocalBusinessSchema,
   buildOrganizationSchema,
@@ -58,13 +58,14 @@ export const metadata: Metadata = {
     title: 'Pintor Profissional em Campo Grande MS | Nobre Cor Pinturas',
     description:
       'Pintura de alto padrão em Campo Grande MS: residencial, comercial, predial, grafiato e efeitos decorativos.',
-    images: [OG_DEFAULT],
+    // Sem `images` aqui de propósito: quem fornece a imagem é
+    // `src/app/opengraph-image.tsx` (convenção de arquivo do Next), que a gera
+    // no build. Declarar `images` manualmente sobrescreveria a gerada.
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pintor Profissional em Campo Grande MS | Nobre Cor Pinturas',
     description: 'Pintura de alto padrão em Campo Grande MS. Orçamento sem compromisso.',
-    images: [OG_DEFAULT.url],
   },
   robots: {
     index: true,

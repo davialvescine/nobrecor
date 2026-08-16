@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { BUSINESS, SITE_URL, OG_DEFAULT } from './business'
+import { BUSINESS, SITE_URL } from './business'
 
 interface SeoOptions {
   title: string
@@ -18,7 +18,22 @@ interface SeoOptions {
  */
 export function buildMetadata(opts: SeoOptions): Metadata {
   const url = opts.path ? `${SITE_URL}${opts.path}` : SITE_URL
-  const ogImage = opts.ogImage ? `${SITE_URL}${opts.ogImage}` : OG_DEFAULT.url
+
+  /**
+   * Imagem do card de link (WhatsApp, Instagram, Facebook, LinkedIn).
+   *
+   * O padrão é a imagem gerada por `src/app/opengraph-image.tsx`, referenciada
+   * pela URL estável `/opengraph-image`.
+   *
+   * Por que declarar explicitamente em vez de confiar na convenção de arquivo:
+   * o Next NÃO faz merge profundo de metadata. Toda página que declara o
+   * próprio `openGraph` substitui inteiro o do layout, inclusive a imagem que a
+   * convenção injetaria. Sem esta linha, só a home tinha `og:image` e as 216
+   * páginas internas saíam sem imagem nenhuma no preview.
+   */
+  const ogImage = opts.ogImage
+    ? `${SITE_URL}${opts.ogImage}`
+    : `${SITE_URL}/opengraph-image`
 
   return {
     title: opts.tituloAbsoluto ? { absolute: opts.title } : opts.title,

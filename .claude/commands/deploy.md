@@ -4,7 +4,7 @@ description: Publica na Vercel seguindo o procedimento completo (CI → push →
 
 1. Rode `npm run ci` completo. Falhou qualquer etapa → PARE e corrija.
 2. Confira as pendências que travam produção:
-   - telefone real no lugar do placeholder `5567999999999` (o `check:rotas` avisa)
+   - telefone: o `check:rotas` valida formato E.164 e coerência entre `phone` e `whatsappNumero`
    - `NEXT_PUBLIC_GA_ID` configurado na Vercel
    - `SITE_URL` = https://nobrecor.com.br
 3. Commit em Conventional Commits (português, sem emoji) e push em `main`.

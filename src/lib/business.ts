@@ -11,11 +11,13 @@ export const BUSINESS = {
   shortName: 'Nobre Cor',
   tagline: 'Pintura de alto padrão em Campo Grande MS.',
 
-  // ⚠️ PENDENTE: trocar pelo número comercial real antes do deploy.
-  // Buscar por "5567999999999" em todo o projeto (scripts/check-rotas.mjs avisa).
-  phone: '+5567999999999',
-  phoneFormatted: '(67) 9 9999-9999',
-  whatsappNumero: '5567999999999',
+  // Número comercial confirmado pelo dono em 16/08/2026.
+  // Formato E.164 no `phone` (exigência do schema.org e do href tel:),
+  // formato de leitura no `phoneFormatted`, e só dígitos no `whatsappNumero`
+  // (o wa.me rejeita qualquer separador).
+  phone: '+5567981522412',
+  phoneFormatted: '(67) 98152-2412',
+  whatsappNumero: '5567981522412',
 
   email: 'contato@nobrecor.com.br',
   url: 'https://nobrecor.com.br',
@@ -80,13 +82,6 @@ export const BUSINESS = {
  * constante literal, e não uma variável por ambiente.
  */
 export const SITE_URL = new URL(BUSINESS.url).origin
-
-export const OG_DEFAULT = {
-  url: `${SITE_URL}/images/og-default.jpg`,
-  width: 1200,
-  height: 630,
-  alt: `${BUSINESS.legalName}, ${BUSINESS.tagline}`,
-} as const
 
 export function buildWhatsAppLink(mensagem?: string): string {
   const base = `https://wa.me/${BUSINESS.whatsappNumero}`

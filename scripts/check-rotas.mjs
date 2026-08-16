@@ -65,8 +65,20 @@ for (const s of servicos) {
 
 // ── placeholders que não podem ir para produção ──────────────────────────────
 const business = readFileSync(join(raiz, 'src/lib/business.ts'), 'utf-8')
-if (business.includes('5567999999999')) {
-  avisos.push('telefone ainda é o placeholder 5567999999999 — trocar antes do deploy')
+
+// O telefone é o canal de conversão do site inteiro: um dígito errado aqui
+// derruba todo CTA, o botão flutuante e o schema LocalBusiness de uma vez.
+const fone = business.match(/phone: '(\+\d+)'/)?.[1]
+const whats = business.match(/whatsappNumero: '(\d+)'/)?.[1]
+
+if (!fone || !/^\+55\d{10,11}$/.test(fone)) {
+  erros.push(`BUSINESS.phone inválido: "${fone}" (esperado E.164, ex: +5567981522412)`)
+}
+if (!whats || !/^55\d{10,11}$/.test(whats)) {
+  erros.push(`BUSINESS.whatsappNumero inválido: "${whats}" (só dígitos, com o 55)`)
+}
+if (fone && whats && fone.replace('+', '') !== whats) {
+  erros.push(`phone (${fone}) e whatsappNumero (${whats}) apontam para números diferentes`)
 }
 if (business.includes("googleBusiness: ''")) {
   avisos.push('Perfil da Empresa no Google ainda não cadastrado em BUSINESS.socials')

@@ -15,8 +15,9 @@
 | Repositório | `git@github.com:davialvescine/nobrecor.git` |
 | Deploy | ❌ ainda não publicado |
 | Domínio | ❌ `nobrecor.com.br` ainda não registrado |
-| Telefone | ⚠️ **placeholder** `5567999999999` — trocar antes do deploy |
+| Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
 | Google Analytics | ⚠️ falta criar a propriedade e definir `NEXT_PUBLIC_GA_ID` |
+| Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
 | Perfil da Empresa no Google | ❌ não cadastrado |
 | Fotos de obra | ❌ nenhuma (portfólio vazio de propósito) |
 | Vídeo da hero | ❌ removido: o arquivo do protótipo estava corrompido |
@@ -288,21 +289,19 @@ nunca pode esconder texto do crawler.
 
 ## 10. TAREFAS PENDENTES (ordem de prioridade)
 
-1. **Telefone real** — trocar `5567999999999` em `src/lib/business.ts` (`phone`,
-   `phoneFormatted`, `whatsappNumero`). O `check:rotas` avisa enquanto estiver placeholder.
-2. **Registrar `nobrecor.com.br`** no registro.br (~R$40/ano) + garantir o @ no Instagram.
-3. **Deploy na Vercel** e apontar o domínio. Definir `NEXT_PUBLIC_GA_ID`. Rodar `deploy-verifier`.
-4. **Fotos e vídeo de obra** — ver instruções no topo de `src/content/portfolio.ts`. A seção de
+1. **Registrar `nobrecor.com.br`** no registro.br (~R$40/ano) + garantir o @ no Instagram.
+2. **Deploy na Vercel** e apontar o domínio. Definir `NEXT_PUBLIC_GA_ID`. Rodar `deploy-verifier`.
+3. **Fotos e vídeo de obra** — ver instruções no topo de `src/content/portfolio.ts`. A seção de
    portfólio só aparece quando houver obra cadastrada (nunca colocar banco de imagens como obra
    da empresa). Quando houver imagem real, ela substitui o `PainelMarca` na hero da home.
-5. **Perfil da Empresa no Google** — categoria "Pintor", área Campo Grande, fotos toda semana,
+4. **Perfil da Empresa no Google** — categoria "Pintor", área Campo Grande, fotos toda semana,
    pedido de avaliação 5★ ao fim de cada obra. É o que mais move o ranking local.
-6. **Search Console + Bing Webmaster** — verificar e enviar o sitemap.
-7. **Copy hiperlocal dos 66 bairros restantes** — agente `copywriter-hiperlocal`, tier 2 primeiro.
-8. **Blog** — ainda não migrado. Os 3 artigos SEO estão em
+5. **Search Console + Bing Webmaster** — verificar e enviar o sitemap.
+6. **Copy hiperlocal dos 66 bairros restantes** — agente `copywriter-hiperlocal`, tier 2 primeiro.
+7. **Blog** — ainda não migrado. Os 3 artigos SEO estão em
    `~/Downloads/nobrecor-projeto/site/blog/`.
-9. **Depoimentos reais** quando existirem (com `Review` no schema só então).
-10. **Onda 2 da matriz** — só depois dos gates da seção 6.
+8. **Depoimentos reais** quando existirem (com `Review` no schema só então).
+9. **Onda 2 da matriz** — só depois dos gates da seção 6.
 
 ---
 
