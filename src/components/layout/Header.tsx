@@ -27,7 +27,9 @@ const NAV = [
   { href: '/#bairros', label: 'Onde atendemos' },
   { href: '/#faq', label: 'Dúvidas' },
   { href: '/sobre', label: 'A empresa' },
-  { href: '/#orcamento', label: 'Contato' },
+  // Rotulado pela AÇÃO, não pelo canal (pedido do dono): "Contato" descrevia a
+  // seção; "Pedir orçamento" diz o que a pessoa consegue fazer lá.
+  { href: '/#orcamento', label: 'Pedir orçamento' },
 ]
 
 /**

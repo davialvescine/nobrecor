@@ -25,9 +25,8 @@ export const BUSINESS = {
   // no alto padrão que um gmail.com.
   email: 'nobrecorpinturas@gmail.com',
 
-  // Domínio escolhido pelo dono em 16/08/2026: casa com o @nobrecorpinturas
-  // do Instagram. NÃO trocar por env var por ambiente — canonical de preview
-  // destrói indexação (ver CLAUDE.md §14).
+  // Domínio escolhido pelo dono em 16/08/2026. NÃO trocar por env var por
+  // ambiente — canonical de preview destrói indexação (ver CLAUDE.md §14).
   url: 'https://nobrecorpinturas.com.br',
 
   address: {
@@ -52,7 +51,8 @@ export const BUSINESS = {
   },
 
   socials: {
-    instagram: 'https://instagram.com/nobrecorpinturas',
+    // Handle confirmado pelo dono em 16/08/2026.
+    instagram: 'https://instagram.com/nobrecorpinturasaltopadrao',
     facebook: '',
     googleBusiness: '',
   },

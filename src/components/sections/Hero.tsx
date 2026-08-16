@@ -212,7 +212,10 @@ export default function Hero({
                 className="animate-hero-in flex items-center gap-3.5"
                 style={{ animationDelay: `${420 + i * 90}ms` }}
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/35 bg-[#c8963e]/10">
+                <span
+                  className="animate-pulso-selo flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/35 bg-[#c8963e]/10"
+                  style={{ animationDelay: `${i * 700}ms` }}
+                >
                   <Icone className="h-5 w-5 text-[#c8963e]" strokeWidth={1.4} aria-hidden="true" />
                 </span>
                 <span className="text-sm leading-snug text-white/80">{texto}</span>

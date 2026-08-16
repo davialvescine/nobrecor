@@ -42,15 +42,34 @@ export default function ServicosSection({
     <section
       id="servicos"
       className="relative scroll-mt-20 overflow-hidden py-24 md:py-28"
-      style={{
-        // Off-white com um miolo levemente mais quente: o chapado #f7f4ef puro
-        // deixava a seção morta ao lado das seções escuras (apontado pelo dono).
-        background: 'linear-gradient(180deg, #f7f4ef 0%, #f1eadb 45%, #f7f4ef 100%)',
-      }}
+      style={{ background: '#f7f4ef' }}
       aria-labelledby="servicos-heading"
     >
+      {/*
+        Foto do rolo aplicando tinta como textura de fundo (pedido do dono em
+        16/08/2026), quase toda coberta por um véu off-white: ela aparece nas
+        bordas e dá matéria à seção, sem disputar com os cards. O véu é mais
+        denso no miolo, onde o texto dos cards precisa de contraste.
+      */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'url(/images/servicos/fundo-catalogo.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 75% 70% at 50% 45%, rgba(247,244,239,0.97) 0%, rgba(247,244,239,0.93) 60%, rgba(247,244,239,0.80) 100%)',
+        }}
+        aria-hidden="true"
+      />
       {/* Listras finas douradas: saíram da hero (brigavam com as fotos) e
-          vivem aqui, onde o fundo chapado precisa delas. */}
+          vivem aqui, onde amarram a textura. */}
       <div
         className="absolute inset-0 opacity-[0.05]"
         style={{

@@ -229,7 +229,11 @@
 }
 
 /*
-  Fundo da hero: 6 cenas × 6s = ciclo de 36s.
+  Fundo da hero: 8 cenas × 6s = ciclo de 48s.
+
+  ⚠️ Duração e porcentagens estão ACOPLADAS ao número de cenas do
+  HeroSlideshow. Mudou a quantidade? Recalcule: duração = cenas × 6s;
+  entrada = 0,9/duração; parada até 6/duração; saída até 6,9/duração.
 
   As porcentagens correspondem a: 0,9s de entrada, 5,1s parada, 0,9s de saída.
   Combinadas com o `animationDelay` de `i * 6 - 0.9` que o HeroSlideshow aplica,
@@ -245,13 +249,13 @@
     opacity: 0;
     transform: scale(1);
   }
-  2.5% {
+  1.9% {
     opacity: 1;
   }
-  16.7% {
+  12.5% {
     opacity: 1;
   }
-  19.2% {
+  14.4% {
     opacity: 0;
     transform: scale(1.05);
   }
@@ -264,7 +268,25 @@
 .hero-slide {
   opacity: 0;
   will-change: opacity, transform;
-  animation: hero-slide 36s linear infinite;
+  animation: hero-slide 48s linear infinite;
+}
+
+/*
+  Anel dos selos da hero: respiração dourada lenta. 4,2s por ciclo e delay
+  escalonado por item — rápida viraria alerta; assim é só um brilho vivo.
+*/
+@keyframes pulso-selo {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 150, 62, 0);
+  }
+  45% {
+    box-shadow: 0 0 0 7px rgba(200, 150, 62, 0.14);
+  }
+}
+
+.animate-pulso-selo {
+  animation: pulso-selo 4.2s ease-in-out infinite;
 }
 
 /* Brilho que atravessa o botão dourado a cada ciclo. */
@@ -336,6 +358,7 @@
   .animate-marquee,
   .animate-fundo,
   .animate-pulso-whatsapp,
+  .animate-pulso-selo,
   .animate-hero-in,
   .animate-fade-up {
     animation: none !important;

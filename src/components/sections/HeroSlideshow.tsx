@@ -1,7 +1,10 @@
 import Image from 'next/image'
 
 /**
- * Fundo da hero: seis cenas em transição cruzada, alternando vídeo e foto.
+ * Fundo da hero: oito cenas em transição cruzada, alternando vídeo e foto.
+ *
+ * ⚠️ O número de cenas está acoplado ao keyframe `hero-slide` do globals.css
+ * (duração = cenas × 6s). Adicionou ou removeu cena? Recalcule lá.
  *
  * Server Component de propósito. A troca é 100% CSS (`.hero-slide`, no
  * globals.css), então não há estado, não há JS de terceiro e o crawler recebe a
@@ -50,7 +53,9 @@ const CENAS: Cena[] = [
     posicao: '55% center',
   },
   { tipo: 'foto', src: '/images/hero/04-sala-azul.jpg', posicao: '62% center' },
+  { tipo: 'foto', src: '/images/hero/06-salao-arcos.jpg', posicao: '60% center' },
   { tipo: 'foto', src: '/images/hero/05-andaime.jpg', posicao: 'center' },
+  { tipo: 'foto', src: '/images/hero/07-fachada-escada.jpg', posicao: '55% center' },
 ]
 
 /** Segundos que cada cena fica no ar. O ciclo total é isto × CENAS.length. */

@@ -13,8 +13,9 @@
 | Stack | Next.js 16.3.1 · React 19.2.8 · **TypeScript 7.0.2** · Tailwind CSS 4.3.3 |
 | Build | 213 páginas estáticas (SSG), verde |
 | Repositório | `git@github.com:davialvescine/nobrecor.git` |
-| Deploy | ❌ ainda não publicado |
+| Deploy | ✅ produção na Vercel: `nobrecor.vercel.app` (projeto `davialvescine/nobrecor`, deploy via CLI) |
 | Domínio | ❌ `nobrecorpinturas.com.br` escolhido, ainda não registrado (ver `docs/dominio-e-dns.md`) |
+| Instagram | ✅ `@nobrecorpinturasaltopadrao` (confirmado pelo dono em 16/08/2026) |
 | Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
 | E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
 | Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
@@ -22,7 +23,7 @@
 | Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
 | Perfil da Empresa no Google | ❌ não cadastrado |
 | Fotos de obra | ❌ nenhuma (portfólio vazio de propósito) |
-| Fundo da hero | ✅ 6 cenas (2 vídeos + 4 fotos) em transição cruzada — ambientação, NÃO obra da empresa |
+| Fundo da hero | ✅ 8 cenas (2 vídeos + 6 fotos, equipe de macacão azul) em transição cruzada — ambientação, NÃO obra da empresa |
 | Depoimentos | ❌ nenhum real |
 
 ### Números do conteúdo
@@ -413,8 +414,8 @@ O gate só cobra bairro com `copyRevisada: true`. Os demais aparecem no relatór
 
 ## 13. TAREFAS PENDENTES (ordem de prioridade)
 
-1. **Registrar `nobrecorpinturas.com.br`** no registro.br (~R$40/ano) + garantir o @ no
-   Instagram. Procedimento completo, incluindo os registros de DNS e as pegadinhas do
+1. **Registrar `nobrecorpinturas.com.br`** no registro.br (~R$40/ano). O Instagram já existe:
+   `@nobrecorpinturasaltopadrao`. Procedimento completo de DNS e as pegadinhas do
    registro.br: **`docs/dominio-e-dns.md`**.
 2. **Deploy na Vercel** e apontar o domínio. Definir `NEXT_PUBLIC_GA_ID`. Rodar `deploy-verifier`.
 3. **Fotos e vídeo de obra** — ver instruções no topo de `src/content/portfolio.ts`. A seção de

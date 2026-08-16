@@ -1,7 +1,7 @@
 # Domínio e DNS — nobrecorpinturas.com.br
 
-> Decisão do dono em 16/08/2026: o domínio é **nobrecorpinturas.com.br**, para casar com o
-> `@nobrecorpinturas` do Instagram. `SITE_URL` já aponta para ele em `src/lib/business.ts`.
+> Decisão do dono em 16/08/2026: o domínio é **nobrecorpinturas.com.br**. O Instagram da
+> empresa é @nobrecorpinturasaltopadrao. `SITE_URL` já aponta para o domínio em `src/lib/business.ts`.
 
 ---
 
@@ -16,7 +16,7 @@ com CPF ou CNPJ e pagamento — por isso é passo manual, não automatizável da
 - Ative a **renovação automática** na hora. Domínio de empresa que expira derruba site,
   e-mail e ranking de uma vez, e o retorno para o índice do Google leva semanas.
 
-Confira também se o `@nobrecorpinturas` continua livre no Instagram e reserve junto.
+O Instagram da empresa é `@nobrecorpinturasaltopadrao` (confirmado pelo dono em 16/08/2026).
 
 ---
 

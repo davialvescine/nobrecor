@@ -17,12 +17,12 @@
  */
 
 import { useId, useState } from 'react'
-import { Send } from 'lucide-react'
+import { Send, Phone, Mail, Clock } from 'lucide-react'
 import { BAIRROS } from '@/content/bairros'
 import { REGIOES_URBANAS } from '@/content/regioes'
 import { GRUPOS, SERVICOS } from '@/content/servicos'
-import { buildWhatsAppLink } from '@/lib/business'
-import { trackWhatsAppClick } from '@/lib/analytics'
+import { BUSINESS, buildWhatsAppLink } from '@/lib/business'
+import { trackWhatsAppClick, trackPhoneClick } from '@/lib/analytics'
 import Reveal from '@/components/ui/Reveal'
 
 const TIPOS_IMOVEL = [
@@ -117,11 +117,16 @@ export default function FormOrcamento({
       aria-labelledby={`${id}-titulo`}
       id="orcamento"
     >
-      {/* Fundo: a mesma fachada da hero, rebaixada e coberta pelo azul da marca. */}
+      {/*
+        Fundo: parede em azul profundo com pincelada dourada — gerada para esta
+        seção. A foto já é escura, então o véu é leve de propósito (pedido do
+        dono em 16/08/2026: "fundo mais escuro e foto mais visível"): só
+        escurece as pontas para o card e os contatos assentarem.
+      */}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/images/hero/rolo-detalhe.jpg)',
+          backgroundImage: 'url(/images/fundos/pincelada-dourada.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -131,7 +136,7 @@ export default function FormOrcamento({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(160deg, rgba(15,36,55,0.96) 0%, rgba(27,58,92,0.93) 55%, rgba(36,72,110,0.90) 100%)',
+            'linear-gradient(160deg, rgba(10,22,36,0.78) 0%, rgba(15,36,55,0.45) 50%, rgba(10,22,36,0.80) 100%)',
         }}
         aria-hidden="true"
       />
@@ -276,6 +281,39 @@ export default function FormOrcamento({
               </p>
             </form>
           </div>
+        </Reveal>
+
+        {/*
+          Contatos diretos sob o formulário (pedido do dono em 16/08/2026):
+          quem chega aqui pelo menu procurando "contato" encontra os canais sem
+          precisar preencher nada.
+        */}
+        <Reveal>
+          <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-9 gap-y-4 text-sm text-white/80">
+            <li>
+              <a
+                href={`tel:${BUSINESS.phone}`}
+                onClick={() => trackPhoneClick('formulario-orcamento')}
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-white"
+              >
+                <Phone className="h-4 w-4 text-[#c8963e]" aria-hidden="true" />
+                {BUSINESS.phoneFormatted}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${BUSINESS.email}`}
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-white"
+              >
+                <Mail className="h-4 w-4 text-[#c8963e]" aria-hidden="true" />
+                {BUSINESS.email}
+              </a>
+            </li>
+            <li className="inline-flex items-center gap-2.5">
+              <Clock className="h-4 w-4 text-[#c8963e]" aria-hidden="true" />
+              Seg a sex, {BUSINESS.hours.segundaASexta}
+            </li>
+          </ul>
         </Reveal>
       </div>
     </section>
