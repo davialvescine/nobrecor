@@ -24,7 +24,7 @@ estiverem ali. Por isso "Campo Grande MS" aparece no Nome mesmo já estando na b
 
 ```
 Pintura de alto padrão em Campo Grande MS
-+20 anos de ofício · Obra limpa · Prazo cumprido
++20 anos de experiência · Obra limpa · Prazo cumprido
 Orçamento sem compromisso
 ```
 
@@ -46,7 +46,7 @@ Publique nesta ordem, um por dia, para o perfil não nascer vazio:
 
 > Nobre Cor Pinturas: pintura de alto padrão em Campo Grande MS.
 >
-> Mais de 20 anos de ofício, aprendidos onde o ofício se aprende: dentro da obra.
+> Mais de 20 anos de experiência, construída onde ela se constrói: dentro da obra.
 >
 > Pintura residencial, comercial e predial. Fachada, grafiato, marmorato, pintura decorativa e
 > acabamentos técnicos.

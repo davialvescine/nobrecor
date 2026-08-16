@@ -39,7 +39,7 @@ export interface Servico {
   etapas: { titulo: string; texto: string }[]
   /**
    * O erro que mais aparece neste serviço quando ele é feito às pressas.
-   * Conteúdo de ofício, útil para o cliente decidir e único por serviço.
+   * Conteúdo técnico do ramo, útil para o cliente decidir e único por serviço.
    */
   erroComum: { titulo: string; texto: string }
   keywords: string[]

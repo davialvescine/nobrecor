@@ -11,7 +11,7 @@ import { buildBreadcrumbSchema, jsonLd } from '@/lib/schema'
 export const metadata: Metadata = buildMetadata({
   title: 'A Empresa Nobre Cor Pinturas em Campo Grande MS',
   description:
-    'Empresa de pintura de alto padrão em Campo Grande MS, com mais de 20 anos de experiência no ofício. Equipe uniformizada, obra protegida e limpa e cronograma cumprido.',
+    'Empresa de pintura de alto padrão em Campo Grande MS, com mais de 20 anos de experiência. Equipe uniformizada, obra protegida e limpa e cronograma cumprido.',
   path: '/sobre',
   tituloAbsoluto: true,
 })

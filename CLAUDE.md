@@ -13,15 +13,16 @@
 | Stack | Next.js 16.3.1 · React 19.2.8 · **TypeScript 7.0.2** · Tailwind CSS 4.3.3 |
 | Build | 213 páginas estáticas (SSG), verde |
 | Repositório | `git@github.com:davialvescine/nobrecor.git` |
-| Deploy | ✅ produção na Vercel: `nobrecor.vercel.app` (projeto `davialvescine/nobrecor`, deploy via CLI) |
-| Domínio | ❌ `nobrecorpinturas.com.br` escolhido, ainda não registrado (ver `docs/dominio-e-dns.md`) |
+| Deploy | ✅ produção na Vercel, projeto `davialvescine/nobrecor`, deploy via `vercel deploy --prod --yes --scope davialvescine` |
+| Domínio | ✅ **https://nobrecorpinturas.com.br** no ar, TLS válido, www com 308 para o apex |
 | Instagram | ✅ `@nobrecorpinturasaltopadrao` (confirmado pelo dono em 16/08/2026) |
 | Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
 | E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
 | Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
 | Google Analytics | ⚠️ falta criar a propriedade e definir `NEXT_PUBLIC_GA_ID` |
 | Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
-| Perfil da Empresa no Google | ❌ não cadastrado |
+| Perfil da Empresa no Google | ⚠️ em cadastro; foto da vitrine já enviada. Materiais em `marca-google/` |
+| Instagram | ✅ `@nobrecorpinturasaltopadrao` com foto, bio e 3 posts. Materiais em `instagram/` |
 | Fotos de obra | ❌ nenhuma (portfólio vazio de propósito) |
 | Fundo da hero | ✅ 8 cenas (2 vídeos + 6 fotos, equipe de macacão azul) em transição cruzada — ambientação, NÃO obra da empresa |
 | Depoimentos | ❌ nenhum real |

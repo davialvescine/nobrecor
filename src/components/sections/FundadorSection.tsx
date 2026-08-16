@@ -41,7 +41,7 @@ export default function FundadorSection() {
             <figcaption className="mt-4 text-sm text-[#2b2b2b]/60">
               <span className="font-semibold text-[#1b3a5c]">{legenda}</span>
               <br />
-              Mais de 20 anos no ofício da pintura
+              Mais de 20 anos de experiência em pintura
             </figcaption>
           </figure>
         </Reveal>
@@ -56,7 +56,7 @@ export default function FundadorSection() {
               id="fundador-heading"
               className="mt-5 font-display text-3xl text-[#1b3a5c] md:text-4xl"
             >
-              Vinte anos aprendendo onde o ofício se aprende: dentro da obra
+              Vinte anos de experiência onde ela se constrói: dentro da obra
             </h2>
 
             <div className="mt-7 space-y-5 leading-relaxed text-[#2b2b2b]/80">
