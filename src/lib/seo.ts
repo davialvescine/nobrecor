@@ -20,6 +20,16 @@ export function buildMetadata(opts: SeoOptions): Metadata {
   const url = opts.path ? `${SITE_URL}${opts.path}` : SITE_URL
 
   /**
+   * Canonical SÓ quando a página tem endereço próprio.
+   *
+   * Sem `path`, `url` cai em SITE_URL — e a página passa a declarar a home como
+   * sua canônica. É exatamente o que a regra do projeto evita ao não definir
+   * canonical no root layout, e voltou pela porta dos fundos no 404: qualquer
+   * endereço inexistente dizia ao Google "eu sou a home".
+   */
+  const canonical = opts.path ? { canonical: url } : {}
+
+  /**
    * Imagem do card de link (WhatsApp, Instagram, Facebook, LinkedIn).
    *
    * O padrão é a imagem gerada por `src/app/opengraph-image.tsx`, referenciada
@@ -39,7 +49,7 @@ export function buildMetadata(opts: SeoOptions): Metadata {
     title: opts.tituloAbsoluto ? { absolute: opts.title } : opts.title,
     description: opts.description,
     metadataBase: new URL(SITE_URL),
-    alternates: { canonical: url },
+    alternates: canonical,
     openGraph: {
       title: opts.title,
       description: opts.description,
