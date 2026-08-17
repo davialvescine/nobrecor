@@ -1,3 +1,5 @@
+import { readFileSync, globSync } from 'node:fs'
+import { join } from 'node:path'
 import { describe, it, expect } from 'vitest'
 import { SERVICOS, SERVICOS_ESTRELA } from '@/content/servicos'
 import { BAIRROS, BAIRROS_PRIORITARIOS, getBairro } from '@/content/bairros'
@@ -203,5 +205,32 @@ describe('WhatsApp', () => {
 
   it('sem contexto, cai na mensagem padrão', () => {
     expect(buildWhatsAppMessage()).toBe(MENSAGEM_PADRAO)
+  })
+})
+
+describe('next/image', () => {
+  /**
+   * O Next 16 valida o `q` da URL de otimização contra `images.qualities`, que
+   * por padrão aceita só 75. Qualquer outro valor devolve 400 e a foto some da
+   * página — mas o build passa verde, porque o erro é de runtime.
+   *
+   * Já aconteceu: `quality={78}` na galeria de serviço e `quality={72}` no
+   * fundo da hero teriam derrubado as 8 cenas da home e as 20 galerias no
+   * mesmo deploy. Este teste existe para isso não voltar em silêncio.
+   */
+  it('nenhum componente pede quality fora de images.qualities', () => {
+    const permitidas = new Set(['75'])
+    const arquivos = globSync('src/**/*.tsx', { cwd: process.cwd() })
+    expect(arquivos.length, 'nenhum .tsx encontrado').toBeGreaterThan(0)
+
+    const infratores: string[] = []
+    for (const arquivo of arquivos) {
+      const fonte = readFileSync(join(process.cwd(), arquivo), 'utf8')
+      for (const m of fonte.matchAll(/quality=\{(\d+)\}/g)) {
+        if (!permitidas.has(m[1]!)) infratores.push(`${arquivo}: quality={${m[1]}}`)
+      }
+    }
+
+    expect(infratores, `quality fora de images.qualities:\n${infratores.join('\n')}`).toEqual([])
   })
 })

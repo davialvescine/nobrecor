@@ -95,7 +95,8 @@ export default function HeroSlideshow() {
               alt=""
               fill
               sizes="100vw"
-              quality={72}
+              // Sem `quality`: ver o comentário em GaleriaServico.tsx. Valor
+              // fora de images.qualities (só 75, por padrão) devolve 400.
               style={{ objectFit: 'cover', objectPosition: cena.posicao }}
             />
           )}

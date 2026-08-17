@@ -70,7 +70,9 @@ export default function GaleriaServico({ fotos, nomeServico }: GaleriaServicoPro
             }
             fill
             sizes="(min-width: 1024px) 56rem, 100vw"
-            quality={78}
+            // Sem `quality`: o Next 16 valida o `q` contra images.qualities, que
+            // por padrão só aceita 75. Qualquer outro valor devolve 400 e a foto
+            // some — e o build passa verde, porque o erro é de runtime.
             // Só a primeira é crítica: é o elemento de LCP da página.
             priority={i === 0}
             className={`object-cover transition-opacity duration-700 ease-out motion-reduce:transition-none ${
