@@ -62,7 +62,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="font-display text-base text-white mb-4">Bairros de alto padrão</h2>
+            {/*
+              "Bairros atendidos", não "Bairros de alto padrão".
+
+              O rodapé aparece nas 213 páginas, e o título anterior classificava
+              bairro em categoria social na frente de qualquer visitante — quem
+              mora fora da lista lia que o seu bairro não é de alto padrão.
+              A lista continua sendo a dos bairros de foco comercial; o que muda
+              é que o site não emite juízo sobre endereço de ninguém.
+            */}
+            <h2 className="font-display text-base text-white mb-4">Bairros atendidos</h2>
             <ul className="space-y-2 text-sm">
               {BAIRROS_PRIORITARIOS.slice(0, 8).map((b) => (
                 <li key={b.slug}>

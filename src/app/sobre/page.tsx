@@ -66,9 +66,11 @@ export default function SobrePage() {
             grafiato, pintura decorativa e pintura fina.
           </p>
           <p className="mt-5 text-[#2b2b2b]/80 leading-relaxed">
-            Atendemos Campo Grande MS inteira, com foco nas áreas nobres da capital: Chácara
-            Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Mata do Jacinto, Parque dos
-            Poderes, Itanhangá e o eixo dos Altos da Afonso Pena.
+            Atendemos Campo Grande MS inteira, incluindo Chácara Cachoeira, Carandá Bosque,
+            Santa Fé, Jardim dos Estados, Mata do Jacinto, Parque dos Poderes, Itanhangá e o
+            eixo dos Altos da Afonso Pena. O padrão de execução é o mesmo em qualquer endereço
+            da cidade: o que muda de uma obra para outra é o tipo de imóvel e o acabamento
+            contratado, nunca o cuidado.
           </p>
         </div>
       </section>

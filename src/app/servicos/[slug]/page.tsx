@@ -233,7 +233,7 @@ export default async function ServicoPage({ params }: Props) {
               {servico.nome} por bairro em Campo Grande
             </h2>
             <p className="mt-3 text-[#2b2b2b]/75">
-              Páginas com o atendimento detalhado em cada área nobre da capital.
+              Páginas com o atendimento detalhado em cada bairro da capital.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2.5">
               {bairrosComLanding.map((b) => (

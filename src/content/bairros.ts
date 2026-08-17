@@ -234,7 +234,7 @@ export const BAIRROS: Bairro[] = [
       'Praça do Rádio Clube',
     ],
     contexto: [
-      'Os Altos da Afonso Pena são a faixa mais nobre de Campo Grande: edifícios de alto padrão, coberturas e casas de arquitetura assinada ao longo da avenida mais importante da cidade. É onde o acabamento é conferido no detalhe e onde a obra precisa ser discreta.',
+      'Os Altos da Afonso Pena concentram edifícios altos, coberturas e casas de arquitetura assinada ao longo da avenida mais movimentada da cidade. É um trecho onde o acabamento é conferido no detalhe e onde a obra precisa ser discreta.',
       'Em edifício de alto padrão, o cuidado começa fora do apartamento: proteção do elevador de serviço, zero respingo em hall e corredor, e equipe identificada e cadastrada na portaria. A área comum precisa estar impecável ao fim de cada dia, não só o apartamento em obra.',
       'Nas coberturas, entra ainda a parte externa: laje exposta, platibanda e área de lazer, superfícies que pedem impermeabilização antes da pintura. Fazer o contrário significa jogar fora a pintura nova na primeira estação de chuva.',
       'A Afonso Pena tem trânsito intenso e restrição de parada em vários trechos. Programamos entrega de material e montagem de acesso em horário de menor fluxo, combinado com você e com a administração do prédio.',

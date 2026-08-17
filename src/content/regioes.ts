@@ -28,7 +28,7 @@ export const REGIOES_URBANAS: RegiaoUrbana[] = [
     nome: 'Prosa',
     nomeCompleto: 'Região Urbana do Prosa, Campo Grande MS',
     descricao:
-      'A região mais nobre de Campo Grande. Reúne Chácara Cachoeira, Carandá Bosque, Santa Fé, Mata do Jacinto e o Parque dos Poderes, condomínios fechados, casas de alto padrão e os principais projetos de arquitetura da capital.',
+      'Reúne Chácara Cachoeira, Carandá Bosque, Santa Fé, Mata do Jacinto e o Parque dos Poderes. Predominam condomínios horizontais fechados, lotes amplos e casas térreas em terreno arborizado, um perfil construtivo que pede fachada preparada para sol direto e muita área externa.',
     posicao: 'nordeste e leste',
   },
   {

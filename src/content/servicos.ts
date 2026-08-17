@@ -64,7 +64,7 @@ export const SERVICOS: Servico[] = [
     descricao:
       'Acabamento fino para residências exigentes: preparação impecável de parede, tinta premium e nível de detalhe que aparece sob luz rasante.',
     descricaoLonga:
-      'Pintura de alto padrão é o serviço que define a Nobre Cor. Trabalhamos em residências e coberturas em Campo Grande MS onde o acabamento não admite falha: parede lixada até ficar plana no toque, recorte de teto e rodapé feito à mão, emassamento em demãos controladas e tinta premium aplicada com equipamento adequado a cada superfície. A equipe é uniformizada, o ambiente fica protegido com lona e fita de baixa aderência do primeiro ao último dia, e a obra é entregue limpa. Atendemos com esse padrão as áreas nobres da capital, Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Parque dos Poderes e todo o eixo da Afonso Pena.',
+      'Pintura de alto padrão é o serviço que define a Nobre Cor. Trabalhamos em residências e coberturas em Campo Grande MS onde o acabamento não admite falha: parede lixada até ficar plana no toque, recorte de teto e rodapé feito à mão, emassamento em demãos controladas e tinta premium aplicada com equipamento adequado a cada superfície. A equipe é uniformizada, o ambiente fica protegido com lona e fita de baixa aderência do primeiro ao último dia, e a obra é entregue limpa. Atendemos com esse padrão toda Campo Grande, incluindo Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Parque dos Poderes e o eixo da Afonso Pena.',
     icone: 'Gem',
     foto: '/images/servicos/pintura-de-alto-padrao.jpg',
     prioridade: 'estrela',
