@@ -119,6 +119,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(buildLocalBusinessSchema())} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(buildOrganizationSchema())} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(buildWebSiteSchema())} />
+        {/*
+          Resgate do Reveal quando o JavaScript não roda.
+
+          O Reveal nasce com `opacity-0` e só o efeito o torna visível. Sem JS —
+          bundle que falhou, extensão que bloqueou, navegador simplificado — esse
+          estado inicial vira permanente, e a home ficava com 43 blocos
+          invisíveis. O CLAUDE.md sempre afirmou o contrário; era o código que
+          não cumpria.
+
+          <noscript> no <head> é a forma que funciona em qualquer navegador,
+          diferente de @media (scripting: none), que ainda é recente demais.
+        */}
+        <noscript>
+          <style>{'.reveal{opacity:1!important;transform:none!important}'}</style>
+        </noscript>
       </head>
       <body className="antialiased">
         <a href="#main-content" className="skip-to-content">

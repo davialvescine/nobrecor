@@ -106,9 +106,23 @@ export default function FormOrcamento({
     trackWhatsAppClick('formulario-orcamento', servico || undefined, bairro || undefined)
 
     const link = buildWhatsAppLink(linhas.join('\n'))
-    const janela = window.open(link, '_blank', 'noopener,noreferrer')
-    // Bloqueador de pop-up: cai para navegação na própria aba em vez de falhar calado.
-    if (!janela) window.location.href = link
+
+    /*
+      Sem 'noopener' na string de features — de propósito.
+
+      Com ela, a especificação manda `window.open` devolver `null` MESMO quando
+      a aba abriu (verificado no Chrome 151). O teste de bloqueio abaixo lia esse
+      null como pop-up bloqueado e navegava a aba atual também: a pessoa recebia
+      o WhatsApp na aba nova E perdia o site na aba de origem, em todo envio.
+
+      A proteção não se perde: o alvo é o wa.me, e `rel="noopener"` já protege os
+      links do site. Aqui zeramos o `opener` na mão, que é o mesmo efeito sem
+      alterar o valor de retorno.
+    */
+    const janela = window.open(link, '_blank')
+    if (janela) janela.opener = null
+    // Aí sim: null agora significa pop-up bloqueado de verdade.
+    else window.location.href = link
   }
 
   return (

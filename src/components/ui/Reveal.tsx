@@ -76,7 +76,11 @@ export default function Reveal({
   return (
     <Tag
       ref={ref as never}
-      className={`transition-all duration-500 ease-out will-change-transform motion-reduce:transition-none ${
+      // A classe `reveal` é a alça para o resgate sem JS: uma regra dentro de
+      // <noscript> no layout devolve opacidade e posição a todas elas. Sem isso,
+      // o estado inicial `opacity-0` é definitivo quando o JS não roda, e a home
+      // saía com 43 blocos invisíveis — o oposto do que o CLAUDE.md promete.
+      className={`reveal transition-all duration-500 ease-out will-change-transform motion-reduce:transition-none ${
         visivel ? 'opacity-100 translate-x-0 translate-y-0 scale-100' : `opacity-0 ${inicial}`
       } ${className}`}
       // Teto de 300ms: escalonar dá elegância, mas uma lista longa com delay

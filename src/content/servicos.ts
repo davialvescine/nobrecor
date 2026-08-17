@@ -62,9 +62,9 @@ export const SERVICOS: Servico[] = [
     nomeSeo: 'Pintura Alto Padrão',
     grupo: 'residencial',
     descricao:
-      'Acabamento fino para residências e projetos assinados: preparação impecável de parede, tinta premium e nível de detalhe que arquiteto aprova.',
+      'Acabamento fino para residências exigentes: preparação impecável de parede, tinta premium e nível de detalhe que aparece sob luz rasante.',
     descricaoLonga:
-      'Pintura de alto padrão é o serviço que define a Nobre Cor. Trabalhamos em residências, coberturas e projetos de arquitetura em Campo Grande MS onde o acabamento não admite falha: parede lixada até ficar plana no toque, recorte de teto e rodapé feito à mão, emassamento em demãos controladas e tinta premium aplicada com equipamento adequado a cada superfície. A equipe é uniformizada, o ambiente fica protegido com lona e fita de baixa aderência do primeiro ao último dia, e a obra é entregue limpa. Atendemos com esse padrão as áreas nobres da capital, Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Parque dos Poderes e todo o eixo da Afonso Pena.',
+      'Pintura de alto padrão é o serviço que define a Nobre Cor. Trabalhamos em residências e coberturas em Campo Grande MS onde o acabamento não admite falha: parede lixada até ficar plana no toque, recorte de teto e rodapé feito à mão, emassamento em demãos controladas e tinta premium aplicada com equipamento adequado a cada superfície. A equipe é uniformizada, o ambiente fica protegido com lona e fita de baixa aderência do primeiro ao último dia, e a obra é entregue limpa. Atendemos com esse padrão as áreas nobres da capital, Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Parque dos Poderes e todo o eixo da Afonso Pena.',
     icone: 'Gem',
     foto: '/images/servicos/pintura-de-alto-padrao.jpg',
     prioridade: 'estrela',
@@ -129,9 +129,9 @@ export const SERVICOS: Servico[] = [
           'A diferença está quase toda na preparação. Numa pintura comum, aplica-se tinta sobre a parede como ela está. No alto padrão, a parede é corrigida antes: massa em camadas finas, lixamento até o nivelamento e conferência com luz rasante, a luz de lanterna paralela à parede, que revela qualquer ondulação. Só depois entra a tinta, em demãos cruzadas com produto de linha superior. O resultado é uma parede que continua impecável sob luz de spot e luz natural.',
       },
       {
-        pergunta: 'Vocês trabalham com projeto de arquitetura e designer de interiores?',
+        pergunta: 'Vocês executam paleta e especificação já definidas por um projeto?',
         resposta:
-          'Sim. Boa parte das obras de alto padrão da Nobre Cor vem com projeto e paleta já definidos pelo arquiteto ou designer. Executamos exatamente a especificação, cor, marca, acabamento fosco/acetinado/semibrilho, e fazemos amostra na própria parede para aprovação antes de seguir com a área toda.',
+          'Executamos exatamente o que está especificado: cor, marca, linha e acabamento fosco, acetinado ou semibrilho. Antes de seguir com a área toda, fazemos amostra na própria parede e sob a luz do ambiente, porque a mesma cor muda de leitura conforme a iluminação e o tamanho da superfície: um tom aprovado num leque de 5 cm costuma parecer mais escuro e mais saturado quando cobre a parede inteira.',
       },
       {
         pergunta: 'Quanto tempo leva uma pintura de alto padrão?',
@@ -227,9 +227,9 @@ export const SERVICOS: Servico[] = [
           'Trabalhamos das duas formas: com material incluso ou só mão de obra, conforme sua preferência. Quando o material é nosso, a marca e a linha da tinta vão especificadas na proposta, você sabe exatamente o que vai para a parede.',
       },
       {
-        pergunta: 'Vocês dão garantia do serviço?',
+        pergunta: 'Quantas demãos são necessárias?',
         resposta:
-          'Sim. A execução tem garantia, e qualquer ajuste de acabamento identificado após a entrega é corrigido sem custo. Nosso interesse é que a obra seja indicada, em pintura, indicação é o que traz o próximo cliente.',
+          'Duas demãos é o padrão de referência, mas o número real depende do contraste entre a cor velha e a nova e do poder de cobertura da linha escolhida. Cobrir vermelho, azul forte ou parede encardida com um tom claro costuma exigir uma demão a mais, ou um fundo preparador que neutraliza a base antes da cor. Tinta econômica esticada em três demãos sai mais cara e cobre pior que tinta de linha superior em duas, e é por isso que a marca e a linha vão especificadas na proposta.',
       },
     ],
   },
@@ -772,6 +772,16 @@ export const SERVICOS: Servico[] = [
         resposta:
           'Pode, e é comum: aplica-se o grafiato na cor base e depois se pinta por cima com tinta acrílica, o que permite mudar a cor da fachada sem refazer a textura. Vale lembrar que a tinta preenche levemente o sulco, então quanto mais demãos, mais suave fica o desenho.',
       },
+      {
+        pergunta: 'Quanto tempo dura o grafiato numa fachada?',
+        resposta:
+          'É um dos revestimentos mais duráveis para fachada justamente por ter espessura: a massa forma uma camada com corpo, que resiste à chuva e à variação de temperatura muito melhor do que uma película de tinta. O que costuma envelhecer primeiro não é o grafiato, é a sujeira acumulada no sulco e o desbotamento da cor pelo sol. Uma lavagem periódica com baixa pressão recupera boa parte do aspecto, e a repintura por cima, quando a cor cansa, dispensa refazer a textura.',
+      },
+      {
+        pergunta: 'Grafiato serve para área interna?',
+        resposta:
+          'Serve, e funciona bem em parede de destaque de sala, hall e área gourmet, onde o relevo cria sombra própria e dá profundidade que parede lisa não tem. Dois cuidados mudam de figura no ambiente interno: o sulco acumula poeira e pede pano ou aspirador de vez em quando, e o relevo é abrasivo, então não é o acabamento indicado para corredor estreito e parede de escada, onde o braço encosta o tempo todo.',
+      },
     ],
   },
   {
@@ -842,6 +852,16 @@ export const SERVICOS: Servico[] = [
         pergunta: 'É possível reproduzir um mármore específico?',
         resposta:
           'É possível chegar bem próximo de referências clássicas, Carrara, Calacatta, Nero. Trabalhamos com a sua imagem de referência e fazemos amostra na parede até bater com o que você imaginou. Uma reprodução idêntica não existe, porque cada aplicação é manual, mas o tom, o fundo e o desenho do veio seguem a referência.',
+      },
+      {
+        pergunta: 'Marmorato pode ser aplicado em banheiro ou área com umidade?',
+        resposta:
+          'Pode, desde que a parede não receba água direta e o acabamento seja protegido com cera ou resina própria para o produto. Marmorato de base mineral, à base de cal, convive bem com a umidade do vapor porque é permeável e deixa a parede respirar. O que não funciona é box de chuveiro e faixa de respingo da bancada, onde a água bate direto e todo dia: ali o revestimento cerâmico continua sendo a resposta certa, e insistir em marmorato só antecipa o retrabalho.',
+      },
+      {
+        pergunta: 'Como se limpa uma parede em marmorato?',
+        resposta:
+          'Pano macio levemente úmido, sem produto abrasivo, sem esponja de lado verde e sem álcool. O brilho do marmorato vem do polimento da própria massa e da cera de acabamento, então esfregar com produto forte tira exatamente o que dá o efeito. Marca de dedo e poeira saem só com o pano. Para manchas de gordura, sabão neutro bem diluído resolve, sempre com movimento leve e secando em seguida.',
       },
     ],
   },

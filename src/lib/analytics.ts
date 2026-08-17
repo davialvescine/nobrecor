@@ -3,6 +3,8 @@
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void
+    /** Fila do gtag. Existe antes da biblioteca subir; ela consome ao carregar. */
+    dataLayer?: unknown[]
   }
 }
 

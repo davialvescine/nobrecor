@@ -32,14 +32,14 @@ export const FAQ_HOME: FaqItem[] = [
       'Na maioria das obras, não. Trabalhamos ambiente por ambiente, isolando e protegendo com lona a área em execução para que o resto da casa siga em uso normal. Piso, móveis, bancadas e esquadrias são protegidos antes de abrir a primeira lata, e a equipe limpa o ambiente ao fim de cada dia.',
   },
   {
-    pergunta: 'A Nobre Cor trabalha com arquitetos e designers de interiores?',
+    pergunta: 'Se eu já tenho a paleta e a especificação definidas, vocês executam?',
     resposta:
-      'Trabalha, e boa parte das obras de alto padrão chega com paleta e especificação já definidas pelo profissional. Executamos exatamente a especificação e fazemos amostra na própria parede para aprovação antes de seguir com a área toda, especialmente em marmorato, grafiato e pintura decorativa.',
+      'Executamos exatamente o que está especificado: cor, marca, linha e acabamento fosco, acetinado ou semibrilho. Antes de seguir com a área toda, fazemos amostra na própria parede e sob a luz do ambiente, porque a mesma cor muda de leitura conforme a iluminação e o tamanho da superfície. Em marmorato, grafiato e pintura decorativa a amostra é indispensável: são acabamentos manuais, e o leque de amostra da loja não representa o resultado na parede.',
   },
   {
-    pergunta: 'Vocês dão garantia do serviço?',
+    pergunta: 'Como vocês conferem se a obra ficou boa antes de entregar?',
     resposta:
-      'Sim. A execução tem garantia e qualquer ajuste de acabamento identificado após a entrega é corrigido sem custo. Antes de considerar a obra entregue, percorremos o ambiente com você sob a luz do local para conferir cada superfície.',
+      'Percorremos o ambiente com você sob a luz do próprio local, que é onde os defeitos aparecem. Luz rasante na parede denuncia ondulação de massa, falha de rolo e emenda de demão que a luz do teto esconde. Conferimos recorte de teto e rodapé, uniformidade da cor entre panos e o estado de esquadria, piso e bancada, que devem sair como entraram.',
   },
   {
     pergunta: 'Qual a melhor época do ano para pintar em Campo Grande?',

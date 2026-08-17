@@ -17,6 +17,29 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || ''
 export default function GoogleAnalytics() {
   useEffect(() => {
     if (!GA_ID) return
+
+    /*
+      O `gtag` nasce aqui, na hidratação, e não junto do script pesado.
+
+      Antes ele só passava a existir quando a biblioteca era carregada, na
+      primeira interação. Só que o handler do React roda ANTES do listener de
+      `window` que dispara esse carregamento — então o primeiro clique da
+      sessão encontrava `window.gtag` indefinido e era descartado em silêncio
+      por trackEvent(). Justamente o clique que mais importa: em boa parte das
+      visitas, o primeiro clique é o do WhatsApp, que é a conversão.
+
+      O gtag real é só uma fila: empilha no dataLayer e a biblioteca consome
+      tudo quando sobe. Criá-lo cedo não custa requisição nenhuma, e o script
+      de verdade continua fora do caminho crítico do LCP.
+    */
+    window.dataLayer = window.dataLayer || []
+    window.gtag = function gtag() {
+      // eslint-disable-next-line prefer-rest-params -- o gtag oficial empilha o próprio `arguments`.
+      window.dataLayer!.push(arguments)
+    }
+    window.gtag('js', new Date())
+    window.gtag('config', GA_ID, { page_path: window.location.pathname })
+
     let carregado = false
 
     const carregar = () => {
@@ -27,15 +50,6 @@ export default function GoogleAnalytics() {
       script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
       script.async = true
       document.head.appendChild(script)
-
-      const inline = document.createElement('script')
-      inline.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_ID}', { page_path: window.location.pathname });
-      `
-      document.head.appendChild(inline)
 
       window.removeEventListener('scroll', carregar)
       window.removeEventListener('click', carregar)

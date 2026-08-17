@@ -35,11 +35,55 @@ if (!achado) {
 }
 
 const HOST = achado[1]
-const url = `https://api.indexnow.org/indexnow?url=https://${HOST}&key=${CHAVE}`
+
+/*
+  Envia a LISTA de URLs, não só a home.
+
+  A versão anterior mandava sempre `url=https://<host>`, ou seja, avisava que a
+  home mudou e mais nada. Os 20 serviços, os 81 bairros e as 105 landings nunca
+  eram submetidos. O retorno 202 confirmava só que o ping foi aceito, o que dava
+  a impressão de que estava tudo indexado — clássico verde enganoso.
+
+  O protocolo aceita submissão em lote por POST com `urlList` (até 10.000 URLs).
+  A fonte é o sitemap que o próprio build acabou de gerar, então a lista
+  acompanha sozinha a liberação das próximas ondas.
+*/
+function urlsDoSitemap() {
+  for (const caminho of ['../.next/server/app/sitemap.xml.body', '../.next/server/app/sitemap.xml']) {
+    try {
+      const xml = readFileSync(new URL(caminho, import.meta.url), 'utf8')
+      const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
+      if (urls.length > 0) return urls
+    } catch {
+      // arquivo ausente: tenta o próximo
+    }
+  }
+  return []
+}
+
+const urlList = urlsDoSitemap()
+
+if (urlList.length === 0) {
+  console.warn('⚠  IndexNow: sitemap do build não encontrado. Avisando só a home.')
+}
 
 try {
-  const res = await fetch(url)
-  console.log(`IndexNow → ${HOST} → ${res.status} ${res.statusText}`)
+  const res =
+    urlList.length > 0
+      ? await fetch('https://api.indexnow.org/indexnow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify({
+            host: HOST,
+            key: CHAVE,
+            keyLocation: `https://${HOST}/${CHAVE}.txt`,
+            urlList,
+          }),
+        })
+      : await fetch(`https://api.indexnow.org/indexnow?url=https://${HOST}&key=${CHAVE}`)
+
+  const quantas = urlList.length > 0 ? `${urlList.length} URLs` : 'só a home'
+  console.log(`IndexNow → ${HOST} → ${quantas} → ${res.status} ${res.statusText}`)
 } catch (erro) {
   console.warn(`⚠  IndexNow falhou (ignorado): ${erro.message}`)
 }

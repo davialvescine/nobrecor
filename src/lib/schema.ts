@@ -38,10 +38,27 @@ export function buildLocalBusinessSchema() {
       addressRegion: BUSINESS.address.region,
       addressCountry: BUSINESS.address.country,
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: BUSINESS.geo.latitude,
-      longitude: BUSINESS.geo.longitude,
+    /*
+      `serviceArea`, e não `geo`.
+
+      Em schema.org, `geo` é a coordenada DO ESTABELECIMENTO. Como a Nobre Cor
+      atende no endereço do cliente e não tem loja aberta ao público, publicar a
+      coordenada do centro de Campo Grande como `geo` inventava uma sede que não
+      existe — o mesmo tipo de afirmação sem lastro que a regra do projeto
+      proíbe, só que em número em vez de texto.
+
+      `serviceArea` com GeoCircle diz o que é verdade: a área coberta a partir
+      daquele ponto. O raio de 30 km cobre a mancha urbana de Campo Grande.
+      O `areaServed` nominal abaixo continua sendo o sinal principal.
+    */
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: BUSINESS.geo.latitude,
+        longitude: BUSINESS.geo.longitude,
+      },
+      geoRadius: '30000',
     },
     // Regra SAB: bairros nominais, nunca área genérica.
     areaServed: [
@@ -92,7 +109,10 @@ export function buildOrganizationSchema() {
       '@type': 'ContactPoint',
       telephone: BUSINESS.phone,
       contactType: 'customer service',
-      areaServed: 'BR',
+      // Nominal, não 'BR'. A empresa atende Campo Grande, e declarar o país
+      // inteiro é o oposto da regra SAB que o resto deste arquivo respeita:
+      // área de cobertura inflada é sinal ruim para o Google local.
+      areaServed: { '@type': 'City', name: 'Campo Grande', addressRegion: 'MS' },
       availableLanguage: 'Portuguese',
     },
   }

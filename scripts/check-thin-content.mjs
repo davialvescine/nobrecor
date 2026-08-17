@@ -63,25 +63,51 @@ const bairros = extrairBlocos('src/content/bairros.ts').map((b) => ({
 const bairrosRevisados = bairros.filter((b) => b.revisada)
 const bairrosPendentes = bairros.filter((b) => !b.revisada)
 
-/** Pega o primeiro e o último de cada grupo: os casos limite são os que quebram. */
-function pontas(lista) {
-  if (lista.length <= 2) return lista
-  return [lista[0], lista[Math.floor(lista.length / 2)], lista[lista.length - 1]]
-}
+/**
+ * TODAS as páginas cobráveis, lidas do sitemap.
+ *
+ * Antes isto era uma amostra: primeiro, meio e último de cada grupo, mais três
+ * landings escritas à mão. Cobria 15 de 141 páginas, e o gate passava verde com
+ * páginas reais abaixo do mínimo escondidas fora da amostra — foi o caso de
+ * grafiato (697/700) e efeito-marmorizado (544/600), achados só numa revisão
+ * externa. Amostra não serve de gate: ou mede tudo, ou não garante nada.
+ *
+ * O sitemap é a fonte porque ele já contém exatamente as páginas geradas na
+ * onda ativa. Assim o gate acompanha sozinho a liberação das ondas seguintes,
+ * sem lista paralela para sair de sincronia.
+ */
+async function paginasCobraveis() {
+  const xml = await (await fetch(`${BASE}/sitemap.xml`)).text()
+  const caminhos = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((m) => m[1].replace(/^https?:\/\/[^/]+/, '') || '/')
 
-const amostra = [
-  { caminho: '/', tipo: 'home' },
-  ...['estrela', 'alto', 'medio'].flatMap((prioridade) =>
-    pontas(servicos.filter((s) => s.prioridade === prioridade)).map((s) => ({
-      caminho: `/servicos/${s.slug}`,
-      tipo: `servico-${prioridade}`,
-    }))
-  ),
-  ...pontas(bairrosRevisados).map((b) => ({ caminho: `/bairros/${b.slug}`, tipo: 'bairro' })),
-  { caminho: '/pintura-de-fachada-jardim-dos-estados', tipo: 'landing' },
-  { caminho: '/grafiato-vilas-boas', tipo: 'landing' },
-  { caminho: '/pintura-comercial-centro', tipo: 'landing' },
-]
+  const porSlugServico = new Map(servicos.map((s) => [s.slug, s.prioridade]))
+  const revisados = new Set(bairrosRevisados.map((b) => b.slug))
+  // Índices sem mínimo próprio: são vitrine, não página de conteúdo.
+  const INDICES = new Set(['/servicos', '/bairros', '/sobre', '/contato'])
+
+  const paginas = []
+  for (const caminho of caminhos) {
+    if (INDICES.has(caminho)) continue
+    if (caminho === '/') { paginas.push({ caminho, tipo: 'home' }); continue }
+
+    const servico = caminho.match(/^\/servicos\/(.+)$/)
+    if (servico) {
+      paginas.push({ caminho, tipo: `servico-${porSlugServico.get(servico[1])}` })
+      continue
+    }
+
+    const bairro = caminho.match(/^\/bairros\/(.+)$/)
+    if (bairro) {
+      // Bairro sem copy hiperlocal está na fila, não é reprovado.
+      if (revisados.has(bairro[1])) paginas.push({ caminho, tipo: 'bairro' })
+      continue
+    }
+
+    paginas.push({ caminho, tipo: 'landing' })
+  }
+  return paginas
+}
 
 // ── medição ─────────────────────────────────────────────────────────────────
 
@@ -106,24 +132,27 @@ function contarPalavras(texto) {
 }
 
 async function main() {
-  console.log(`Medindo conteúdo único em ${BASE}\n`)
+  const amostra = await paginasCobraveis()
+  console.log(`Medindo conteúdo de ${amostra.length} páginas em ${BASE}\n`)
   const falhas = []
 
-  // Em série de propósito: paralelizar sobrecarrega o dev server e distorce a medição.
+  // Em série de propósito: paralelizar sobrecarrega o dev server e vira erro de
+  // conexão no meio da medição. Só as reprovadas são impressas — com 141
+  // páginas, listar todas afogaria a única linha que importa.
   for (const { caminho, tipo } of amostra) {
     try {
       const palavras = contarPalavras(await textoDaPagina(caminho))
       const minimo = MINIMOS[tipo]
-      const ok = palavras >= minimo
-      console.log(
-        `${ok ? '✓' : '✗'} ${String(palavras).padStart(5)} palavras (mín ${String(minimo).padStart(3)})  ${caminho}`
-      )
-      if (!ok) falhas.push(`${caminho}: ${palavras}/${minimo} palavras`)
+      if (palavras < minimo) {
+        console.log(`✗ ${String(palavras).padStart(5)} palavras (mín ${minimo})  ${caminho}`)
+        falhas.push(`${caminho}: ${palavras}/${minimo} palavras`)
+      }
     } catch (erro) {
       console.log(`✗ ERRO  ${caminho} — ${erro.message}`)
       falhas.push(`${caminho}: ${erro.message}`)
     }
   }
+  if (falhas.length === 0) console.log(`✓ as ${amostra.length} páginas passaram do mínimo`)
 
   console.log(
     `\nBairros com copy hiperlocal revisada: ${bairrosRevisados.length}/${bairros.length}`
