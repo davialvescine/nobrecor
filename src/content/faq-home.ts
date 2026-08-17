@@ -14,7 +14,7 @@ export const FAQ_HOME: FaqItem[] = [
   {
     pergunta: 'A Nobre Cor atende todos os bairros de Campo Grande?',
     resposta:
-      'Sim. Atendemos as 7 regiões urbanas de Campo Grande MS, Centro, Prosa, Segredo, Bandeira, Anhanduizinho, Lagoa e Imbirussu. O foco do nosso serviço de alto padrão está nos bairros nobres, como Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Mata do Jacinto, Parque dos Poderes, Itanhangá e o eixo dos Altos da Afonso Pena.',
+      'Sim. Atendemos as 7 regiões urbanas de Campo Grande MS, Centro, Prosa, Segredo, Bandeira, Anhanduizinho, Lagoa e Imbirussu, e os 81 bairros da cidade. Concentramos o serviço de alto padrão em Chácara Cachoeira, Carandá Bosque, Santa Fé, Jardim dos Estados, Mata do Jacinto, Parque dos Poderes, Itanhangá e nos Altos da Afonso Pena, que têm página própria com o detalhe da execução. O padrão de acabamento é o mesmo em qualquer endereço.',
   },
   {
     pergunta: 'Quanto tempo leva para pintar uma casa ou apartamento?',

@@ -59,7 +59,10 @@ export default async function BairroPage({ params }: Props) {
     },
     {
       pergunta: `Quanto custa pintar uma casa em ${bairro.nome}?`,
-      resposta: `Não existe preço fechado por telefone, e desconfie de quem dá. O valor depende da metragem real, do estado da parede e do acabamento. Em ${bairro.nome}, o perfil predominante é: ${bairro.perfil.toLowerCase()}. Fazemos a avaliação no local e o orçamento sai discriminado por ambiente.`,
+      // Antes dizia "desconfie de quem dá". A informação é a mesma, mas mandar o
+      // leitor desconfiar de terceiros soa a ataque, e isso aparecia nas 81
+      // páginas de bairro. O argumento fica mais forte explicando o porquê.
+      resposta: `Preço fechado por telefone, sem ver a obra, é estimativa no escuro, e em pintura isso vira aditivo depois. O valor depende da metragem real, do estado da parede e do acabamento. Em ${bairro.nome}, o perfil predominante é: ${bairro.perfil.toLowerCase()}. Fazemos a avaliação no local e o orçamento sai discriminado por ambiente.`,
     },
     {
       pergunta: `Qual o prazo para começar a obra em ${bairro.nome}?`,

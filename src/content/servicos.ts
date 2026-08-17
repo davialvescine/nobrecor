@@ -760,7 +760,7 @@ export const SERVICOS: Servico[] = [
       {
         pergunta: 'Qual a diferença entre grafiato e textura?',
         resposta:
-          'Grafiato é uma massa aplicada com desempenadeira e depois riscada com movimento controlado, formando sulcos regulares: o desenho fica uniforme e o efeito é o mais nobre entre os revestimentos de fachada. As texturas comuns são lançadas na parede com equipamento e têm aspecto granulado irregular, mais barato e sem o mesmo acabamento. A Nobre Cor trabalha com grafiato justamente porque ele é o que valoriza a fachada de um imóvel de alto padrão.',
+          'Grafiato é uma massa aplicada com desempenadeira e depois riscada com movimento controlado, formando sulcos regulares: o desenho fica uniforme e o efeito é o mais nobre entre os revestimentos de fachada. As texturas comuns são lançadas na parede com equipamento e têm aspecto granulado irregular, mais barato e sem o mesmo acabamento. A Nobre Cor trabalha com grafiato justamente por isso: é o acabamento que valoriza a fachada e resiste melhor ao tempo.',
       },
       {
         pergunta: 'Dá para aplicar grafiato sobre parede já pintada?',
@@ -931,7 +931,7 @@ export const SERVICOS: Servico[] = [
       {
         pergunta: 'A fita não descasca a tinta que já está na parede?',
         resposta:
-          'Não, porque usamos fita de baixa aderência apropriada para pintura e respeitamos o tempo de cura da base antes de colar. Fita comum de embalagem, aplicada sobre tinta nova, é o que arranca a parede, esse é um dos erros mais frequentes em trabalho amador.',
+          'Não, porque usamos fita de baixa aderência apropriada para pintura e respeitamos o tempo de cura da base antes de colar. Fita comum de embalagem, aplicada sobre tinta nova, é o que arranca a parede, esse é um dos erros mais frequentes em serviço feito às pressas.',
       },
     ],
   },

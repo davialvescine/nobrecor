@@ -42,15 +42,17 @@ export default function BairrosPage() {
         subtitulo="A Nobre Cor circula pela capital inteira, das superquadras do Centro aos condomínios do Prosa. Encontre o seu bairro abaixo e veja como atendemos na sua região."
       />
 
-      <section className="py-16 bg-white" aria-labelledby="area-nobre-heading">
+      <section className="py-16 bg-white" aria-labelledby="area-foco-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="area-nobre-heading" className="font-display text-2xl md:text-3xl heading-line">
-            Área nobre, nosso foco de atendimento
+          <h2 id="area-foco-heading" className="font-display text-2xl md:text-3xl heading-line">
+            Nosso foco de atendimento
           </h2>
           <p className="mt-6 max-w-3xl text-[#2b2b2b]/75 leading-relaxed">
-            O acabamento de alto padrão da Nobre Cor foi construído para os bairros abaixo:
-            residências com projeto de arquitetura, condomínios fechados, coberturas e imóveis
-            onde a parede é conferida sob luz de spot. É neles que a equipe está todos os dias.
+            O acabamento de alto padrão da Nobre Cor foi construído para imóveis onde a parede é
+            conferida de perto: residências com projeto de arquitetura, condomínios fechados e
+            coberturas. É nos bairros abaixo que concentramos esse atendimento, e cada um tem
+            página própria com o detalhe da execução. A cobertura, porém, é dos 81 bairros da
+            cidade.
           </p>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {BAIRROS_PRIORITARIOS.map((b) => (

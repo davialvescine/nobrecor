@@ -43,8 +43,14 @@ export default function BairrosSection() {
         <TituloSecao
           id="bairros-heading"
           eyebrow="Onde atendemos"
-          titulo="Pintura nos bairros nobres de Campo Grande"
-          subtitulo={`A Nobre Cor atende Campo Grande MS inteira, nas 7 regiões urbanas e ${TOTAL_BAIRROS} bairros. O foco do nosso acabamento de alto padrão está nas áreas abaixo, e é nelas que a equipe circula todos os dias.`}
+          // O foco comercial é declarado e continua explícito: são os bairros de
+          // foco do acabamento de alto padrão. O que saiu foi chamá-los de
+          // "bairros nobres" — a hierarquia é sobre o SERVIÇO que priorizamos,
+          // não sobre o status de quem mora em cada endereço.
+          titulo="Onde concentramos o atendimento"
+          // "é nelas que a equipe circula todos os dias" saiu junto: afirmava
+          // uma rotina de obras que ninguém declarou (.claude/rules/conteudo.md).
+          subtitulo={`A Nobre Cor atende Campo Grande MS inteira, nas 7 regiões urbanas e ${TOTAL_BAIRROS} bairros. Estes são os bairros de foco do nosso acabamento de alto padrão, cada um com página própria e o detalhe da execução.`}
         />
 
         <ul className="mt-14 flex flex-wrap justify-center gap-2.5">
