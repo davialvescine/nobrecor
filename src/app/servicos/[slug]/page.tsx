@@ -1,7 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CheckCircle2, MapPin } from 'lucide-react'
@@ -12,6 +11,7 @@ import CtaSection from '@/components/sections/CtaSection'
 import PortfolioSection from '@/components/sections/PortfolioSection'
 import CardServico from '@/components/ui/CardServico'
 import IconeServico from '@/components/ui/IconeServico'
+import GaleriaServico from '@/components/ui/GaleriaServico'
 import { SERVICOS, getServico, GRUPOS } from '@/content/servicos'
 import { BAIRROS_PRIORITARIOS } from '@/content/bairros'
 import { buildWhatsAppMessage } from '@/lib/business'
@@ -19,17 +19,37 @@ import { buildMetadata, buildTituloServico, buildDescricaoServico } from '@/lib/
 import { buildServiceSchema, buildFaqSchema, buildBreadcrumbSchema, jsonLd } from '@/lib/schema'
 import { ONDA_ATIVA } from '@/lib/landing-pages'
 
+/** Teto de fotos por serviço. Acima disso a página vira álbum, não página de venda. */
+const MAX_FOTOS = 6
+
 /**
- * O `foto` de cada serviço já existe no catálogo há tempo, mas os arquivos vão
- * sendo criados aos poucos. Em vez de manter uma lista paralela de "quem já tem
- * foto" — que sempre sai de sincronia — a página checa o arquivo no build.
+ * Descobre as fotos do serviço lendo o disco no build.
  *
- * Roda só no servidor, durante a geração estática: nada disso vai para o
- * navegador. Consequência prática: basta soltar o .jpg em public/images/servicos
- * com o nome certo e a foto aparece no próximo deploy, sem tocar em código.
+ * Convenção: a principal é o `foto` do catálogo (ex.: `grafiato.jpg`) e as
+ * extras são o mesmo nome com sufixo numérico (`grafiato-2.jpg`,
+ * `grafiato-3.jpg`…). A varredura para na primeira que faltar.
+ *
+ * Existe para não haver lista paralela de "quem já tem foto", que sempre sai de
+ * sincronia com os arquivos. Na prática: basta soltar o .jpg com o nome certo em
+ * public/images/servicos que ele aparece no próximo deploy, sem tocar em código.
+ * É também o caminho para trocar imagem gerada por foto de obra real, uma a uma.
+ *
+ * Roda só no servidor, durante a geração estática: nada disso vai ao navegador.
  */
-function existeFoto(caminhoPublico: string): boolean {
-  return existsSync(join(process.cwd(), 'public', caminhoPublico))
+function fotosDoServico(fotoPrincipal: string): string[] {
+  const existe = (caminho: string) => existsSync(join(process.cwd(), 'public', caminho))
+  if (!existe(fotoPrincipal)) return []
+
+  const fotos = [fotoPrincipal]
+  const semExtensao = fotoPrincipal.replace(/\.jpg$/, '')
+
+  for (let n = 2; n <= MAX_FOTOS; n++) {
+    const extra = `${semExtensao}-${n}.jpg`
+    if (!existe(extra)) break
+    fotos.push(extra)
+  }
+
+  return fotos
 }
 
 interface Props {
@@ -60,7 +80,7 @@ export default async function ServicoPage({ params }: Props) {
   const servico = getServico(slug)
   if (!servico) notFound()
 
-  const temFoto = existeFoto(servico.foto)
+  const fotos = fotosDoServico(servico.foto)
 
   const relacionados = SERVICOS.filter(
     (s) => s.grupo === servico.grupo && s.slug !== servico.slug
@@ -132,19 +152,7 @@ export default async function ServicoPage({ params }: Props) {
 
             `priority` porque é o elemento de LCP desta página.
           */}
-          {temFoto && (
-            <div className="relative mb-10 aspect-[3/2] overflow-hidden rounded-[var(--radius-card)] shadow-[0_20px_44px_-24px_rgba(27,58,92,0.45)]">
-              <Image
-                src={servico.foto}
-                alt={`Acabamento de ${servico.nome.toLowerCase()}`}
-                fill
-                sizes="(min-width: 1024px) 56rem, 100vw"
-                quality={78}
-                priority
-                className="object-cover"
-              />
-            </div>
-          )}
+          <GaleriaServico fotos={fotos} nomeServico={servico.nome} />
 
           <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#c8963e]/30 bg-[#c8963e]/10 text-[#a87b2f]">
             <IconeServico nome={servico.icone} className="h-8 w-8" />
