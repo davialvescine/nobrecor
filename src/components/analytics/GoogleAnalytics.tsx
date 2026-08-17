@@ -2,7 +2,12 @@
 
 import { useEffect } from 'react'
 
-/** ⚠️ PENDENTE: trocar pelo ID real do GA4 após criar a propriedade. */
+/**
+ * Propriedade GA4 criada em 17/08/2026 (`G-1H646N1MPQ`), com o fuso de Campo
+ * Grande. O ID vive na env `NEXT_PUBLIC_GA_ID` da Vercel, não aqui: em
+ * ambiente sem a variável o componente simplesmente não carrega nada, que é o
+ * comportamento certo em desenvolvimento e em preview.
+ */
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || ''
 
 /**

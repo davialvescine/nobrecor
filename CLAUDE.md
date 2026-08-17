@@ -19,7 +19,7 @@
 | Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
 | E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
 | Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
-| Google Analytics | ⚠️ falta criar a propriedade e definir `NEXT_PUBLIC_GA_ID` |
+| Google Analytics | ✅ GA4 `G-1H646N1MPQ`, fuso de Campo Grande, `NEXT_PUBLIC_GA_ID` na Vercel |
 | Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
 | Perfil da Empresa no Google | ⚠️ em cadastro; foto da vitrine já enviada. Materiais em `marca-google/` |
 | Instagram | ✅ `@nobrecorpinturasaltopadrao` com foto, bio e 3 posts. Materiais em `instagram/` |
