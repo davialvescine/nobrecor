@@ -1,7 +1,8 @@
 # Search Console e Bing Webmaster
 
-> Estado em 16/08/2026: domínio **no ar** (`https://nobrecorpinturas.com.br`), sitemap com
-> **211 URLs** servindo, IndexNow **ativo**. Falta verificar a propriedade e enviar o sitemap.
+> **CONCLUÍDO em 17/08/2026.** Google Search Console verificado por DNS e sitemap com 211 URLs
+> processado. Bing Webmaster Tools importado do GSC, com o mesmo sitemap enviado. IndexNow
+> ativo e confirmado. Este documento fica como registro do procedimento.
 
 ---
 

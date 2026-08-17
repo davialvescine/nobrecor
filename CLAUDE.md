@@ -20,6 +20,9 @@
 | E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
 | Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
 | Google Analytics | ✅ GA4 `G-1H646N1MPQ`, fuso de Campo Grande, `NEXT_PUBLIC_GA_ID` na Vercel |
+| Search Console | ✅ verificado por DNS (TXT), sitemap com 211 URLs processado |
+| Bing Webmaster | ✅ importado do GSC, sitemap enviado, IndexNow ativo |
+| Backlinks | ❌ zero. Decisão do dono em 17/08/2026: não atacar agora |
 | Imagem de preview de link | ✅ gerada no build por `src/app/opengraph-image.tsx` |
 | Perfil da Empresa no Google | ⚠️ em cadastro; foto da vitrine já enviada. Materiais em `marca-google/` |
 | Instagram | ✅ `@nobrecorpinturasaltopadrao` com foto, bio e 3 posts. Materiais em `instagram/` |
