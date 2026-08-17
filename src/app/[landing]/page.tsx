@@ -11,7 +11,7 @@ import { getServico, SERVICOS_ESTRELA } from '@/content/servicos'
 import { getBairro } from '@/content/bairros'
 import { getRegiaoUrbana } from '@/content/regioes'
 import { buildWhatsAppMessage } from '@/lib/business'
-import { buildMetadata, buildTituloLanding } from '@/lib/seo'
+import { buildMetadata, buildTituloLanding, buildDescricaoLanding } from '@/lib/seo'
 import { buildServiceSchema, buildFaqSchema, buildBreadcrumbSchema, jsonLd } from '@/lib/schema'
 import { getLandingPages, parseLandingSlug } from '@/lib/landing-pages'
 
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Título absoluto para controlar os 60 chars — o sufixo do template do root
     // estouraria o limite em boa parte das combinações.
     title: buildTituloLanding(nomeCurto, bairroCurto),
-    description: `${servico.nome} em ${bairro.nome}, Campo Grande MS. Acabamento de alto padrão, equipe uniformizada e prazo cumprido. Orçamento sem compromisso no WhatsApp.`,
+    description: buildDescricaoLanding(servico.nome, bairro.nome),
     path: `/${landing}`,
     tituloAbsoluto: true,
   })

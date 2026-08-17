@@ -1,5 +1,18 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageWrapper from '@/components/layout/PageWrapper'
+import { buildMetadata } from '@/lib/seo'
+
+/**
+ * O 404 herdava o title e a description do root, ficando idêntico à home aos
+ * olhos do Google — title duplicado é sinal de conteúdo duplicado. Agora tem
+ * texto próprio e `noIndex`: página de erro não deve disputar busca com nada.
+ */
+export const metadata: Metadata = buildMetadata({
+  title: 'Página não encontrada',
+  description: 'O endereço não existe ou foi movido. Veja os serviços de pintura da Nobre Cor e o atendimento por bairro em Campo Grande MS.',
+  noIndex: true,
+})
 
 export default function NotFound() {
   return (

@@ -10,7 +10,17 @@ import {
   getTodasLandingPages,
   ONDA_ATIVA,
 } from '@/lib/landing-pages'
-import { buildMetadata, buildTituloLanding, TITLE_MAX } from '@/lib/seo'
+import {
+  buildMetadata,
+  buildTituloLanding,
+  buildTituloServico,
+  buildDescricaoServico,
+  buildDescricaoBairro,
+  buildDescricaoLanding,
+  TITLE_MAX,
+  DESCRIPTION_MAX,
+  SUFIXO_TITULO,
+} from '@/lib/seo'
 import { buildLocalBusinessSchema, buildFaqSchema } from '@/lib/schema'
 import {
   buildWhatsAppLink,
@@ -232,5 +242,44 @@ describe('next/image', () => {
     }
 
     expect(infratores, `quality fora de images.qualities:\n${infratores.join('\n')}`).toEqual([])
+  })
+})
+
+describe('limites de title e description', () => {
+  /**
+   * O `title` e a `description` tinham limites declarados (TITLE_MAX,
+   * DESCRIPTION_MAX) que nenhum builder consultava, fora o de landing. O
+   * resultado: 112 das 213 páginas com description acima de 160, e dois
+   * serviços com title acima de 60 — porque o sufixo " | Nobre Cor" que o root
+   * acrescenta não entrava na conta de quem media.
+   *
+   * Aqui vale a matriz INTEIRA (1.620), não só a onda publicada: assim o
+   * estouro aparece agora e não no dia em que a onda 2 for liberada.
+   */
+  it('nenhum title de serviço estoura, já com o sufixo do root', () => {
+    const longos = SERVICOS.map((s) => buildTituloServico(s.nomeSeo || s.nome) + SUFIXO_TITULO)
+      .filter((t) => t.length > TITLE_MAX)
+    expect(longos, `title > ${TITLE_MAX}:\n${longos.join('\n')}`).toEqual([])
+  })
+
+  it('nenhuma description estoura, em toda a matriz', () => {
+    const longas: string[] = []
+    const registra = (d: string) => { if (d.length > DESCRIPTION_MAX) longas.push(`(${d.length}) ${d}`) }
+
+    for (const s of SERVICOS) registra(buildDescricaoServico(s.nomeSeo || s.nome))
+    for (const b of BAIRROS) registra(buildDescricaoBairro(b.nome))
+    for (const s of SERVICOS) for (const b of BAIRROS) registra(buildDescricaoLanding(s.nome, b.nome))
+
+    expect(longas, `description > ${DESCRIPTION_MAX}:\n${longas.slice(0, 5).join('\n')}`).toEqual([])
+  })
+
+  it('nenhum title de landing estoura, em toda a matriz', () => {
+    const longos: string[] = []
+    for (const s of SERVICOS)
+      for (const b of BAIRROS) {
+        const t = buildTituloLanding(s.nomeSeo || s.nome, b.nomeSeo || b.nome)
+        if (t.length > TITLE_MAX) longos.push(`(${t.length}) ${t}`)
+      }
+    expect(longos, `title > ${TITLE_MAX}:\n${longos.slice(0, 5).join('\n')}`).toEqual([])
   })
 })

@@ -10,7 +10,7 @@ import { TOTAL_SERVICOS } from '@/content/servicos'
 export const metadata: Metadata = buildMetadata({
   title: 'Serviços de Pintura em Campo Grande MS',
   description:
-    'Todos os serviços da Nobre Cor em Campo Grande MS: pintura residencial, de apartamento, fachada, grafiato, marmorato, pintura predial, epóxi e impermeabilização.',
+    'Os serviços da Nobre Cor em Campo Grande MS: pintura residencial, apartamento, fachada, grafiato, marmorato, predial, epóxi e impermeabilização.',
   path: '/servicos',
 })
 

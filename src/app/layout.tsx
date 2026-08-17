@@ -53,11 +53,13 @@ export const metadata: Metadata = {
   },
   title: {
     default: 'Pintor Profissional em Campo Grande MS | Nobre Cor Pinturas',
-    // Sufixo curto de propósito: "| Nobre Cor" custa 11 chars e cabe nos 60 do Google.
+    // Sufixo curto de propósito: " | Nobre Cor" custa 12 chars dos 60 do Google.
+    // Quem monta título para ESTA rota precisa descontá-los — é o que
+    // SUFIXO_TITULO faz em src/lib/seo.ts.
     template: '%s | Nobre Cor',
   },
   description:
-    'Empresa de pintura de alto padrão em Campo Grande MS. Pintura residencial, comercial e predial, grafiato, marmorato e efeitos decorativos. Orçamento sem compromisso em até 24h.',
+    'Pintura de alto padrão em Campo Grande MS: residencial, comercial, predial, grafiato, marmorato e efeitos decorativos. Orçamento sem compromisso em até 24h.',
   keywords: [
     'pintor em campo grande ms',
     'empresa de pintura campo grande',

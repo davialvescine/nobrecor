@@ -17,7 +17,7 @@ import { buildMetadata } from '@/lib/seo'
 export const metadata: Metadata = buildMetadata({
   title: 'Pintor Profissional em Campo Grande MS | Nobre Cor Pinturas',
   description:
-    'Empresa de pintura de alto padrão em Campo Grande MS. Pintura residencial, comercial e predial, grafiato e marmorato. Equipe uniformizada, prazo cumprido e orçamento em até 24h.',
+    'Pintura de alto padrão em Campo Grande MS: residencial, comercial, predial, grafiato e marmorato. Equipe uniformizada, prazo cumprido e orçamento em até 24h.',
   path: '/',
   tituloAbsoluto: true,
 })

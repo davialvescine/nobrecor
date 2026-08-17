@@ -11,7 +11,7 @@ import { BAIRROS, getBairro, getBairrosPorRegiao } from '@/content/bairros'
 import { getRegiaoUrbana } from '@/content/regioes'
 import { SERVICOS, SERVICOS_ESTRELA } from '@/content/servicos'
 import { buildWhatsAppMessage } from '@/lib/business'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, buildDescricaoBairro } from '@/lib/seo'
 import { buildFaqSchema, buildBreadcrumbSchema, jsonLd } from '@/lib/schema'
 import { ONDA_ATIVA } from '@/lib/landing-pages'
 
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return buildMetadata({
     title: `Pintor em ${bairro.nomeSeo || bairro.nome}, Campo Grande MS`,
-    description: `Pintura residencial, comercial e predial em ${bairro.nome}, Campo Grande MS. Equipe uniformizada, obra limpa e prazo cumprido. Orçamento sem compromisso no WhatsApp.`,
+    description: buildDescricaoBairro(bairro.nome),
     path: `/bairros/${bairro.slug}`,
     tituloAbsoluto: true,
   })
