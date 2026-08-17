@@ -1,4 +1,7 @@
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CheckCircle2, MapPin } from 'lucide-react'
@@ -15,6 +18,19 @@ import { buildWhatsAppMessage } from '@/lib/business'
 import { buildMetadata, buildTituloServico, buildDescricaoServico } from '@/lib/seo'
 import { buildServiceSchema, buildFaqSchema, buildBreadcrumbSchema, jsonLd } from '@/lib/schema'
 import { ONDA_ATIVA } from '@/lib/landing-pages'
+
+/**
+ * O `foto` de cada serviço já existe no catálogo há tempo, mas os arquivos vão
+ * sendo criados aos poucos. Em vez de manter uma lista paralela de "quem já tem
+ * foto" — que sempre sai de sincronia — a página checa o arquivo no build.
+ *
+ * Roda só no servidor, durante a geração estática: nada disso vai para o
+ * navegador. Consequência prática: basta soltar o .jpg em public/images/servicos
+ * com o nome certo e a foto aparece no próximo deploy, sem tocar em código.
+ */
+function existeFoto(caminhoPublico: string): boolean {
+  return existsSync(join(process.cwd(), 'public', caminhoPublico))
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -43,6 +59,8 @@ export default async function ServicoPage({ params }: Props) {
   const { slug } = await params
   const servico = getServico(slug)
   if (!servico) notFound()
+
+  const temFoto = existeFoto(servico.foto)
 
   const relacionados = SERVICOS.filter(
     (s) => s.grupo === servico.grupo && s.slug !== servico.slug
@@ -103,6 +121,31 @@ export default async function ServicoPage({ params }: Props) {
 
       <article className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/*
+            Foto ilustrativa do acabamento deste serviço.
+
+            ⚠️ É imagem GERADA, ambientação — NÃO é obra da Nobre Cor. Por isso
+            não tem legenda de obra, e o `alt` descreve o tipo de acabamento, não
+            um trabalho executado (ver .claude/rules/conteudo.md). Quando houver
+            foto de obra real, ela substitui aqui e só então pode ser legendada
+            como obra.
+
+            `priority` porque é o elemento de LCP desta página.
+          */}
+          {temFoto && (
+            <div className="relative mb-10 aspect-[3/2] overflow-hidden rounded-[var(--radius-card)] shadow-[0_20px_44px_-24px_rgba(27,58,92,0.45)]">
+              <Image
+                src={servico.foto}
+                alt={`Acabamento de ${servico.nome.toLowerCase()}`}
+                fill
+                sizes="(min-width: 1024px) 56rem, 100vw"
+                quality={78}
+                priority
+                className="object-cover"
+              />
+            </div>
+          )}
+
           <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#c8963e]/30 bg-[#c8963e]/10 text-[#a87b2f]">
             <IconeServico nome={servico.icone} className="h-8 w-8" />
           </span>
