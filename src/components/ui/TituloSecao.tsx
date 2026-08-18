@@ -39,7 +39,7 @@ export default function TituloSecao({
       {eyebrow && (
         <p
           className={`mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] ${
-            escuro ? 'text-[#e0bd77]' : 'text-[#a87b2f]'
+            escuro ? 'text-[#e0bd77]' : 'text-[#906928]'
           }`}
         >
           {eyebrow}

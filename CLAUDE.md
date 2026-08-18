@@ -73,7 +73,7 @@ Estão em `BUSINESS.diferenciais` (`src/lib/business.ts`). Não reescrever sem p
 | Azul Nobre | `#1B3A5C` | base, seções escuras, títulos |
 | Off-White | `#F7F4EF` | fundo claro |
 | Dourado | `#C8963E` | acento premium, CTA |
-| Dourado Escuro | `#A87B2F` | facetas, hover, texto de apoio |
+| Dourado Escuro | `#906928` | facetas, hover, texto de apoio em fundo claro |
 | Aço | `#5B7FA6` | facetas do diamante |
 | Carvão | `#2B2B2B` | texto |
 | Verde WhatsApp | `#25D366` | **só** o botão do WhatsApp |
@@ -84,7 +84,9 @@ Estão em `BUSINESS.diferenciais` (`src/lib/business.ts`). Não reescrever sem p
   usar em texto corrido — os `h1..h4` já aplicam `text-transform: uppercase` no `globals.css`.
 - **Símbolo:** diamante facetado (componente `Diamante` em `Header.tsx`; arquivos em
   `public/images/marca/`).
-- **Botão dourado tem texto azul-escuro.** Contraste 5:1. NÃO trocar para branco (cai para 2,1:1).
+- **Botão dourado tem texto azul-escuro.** As 3 paradas do gradiente passam nos 4,5:1 (5,57 · 4,87 · 4,51),
+  medidas uma a uma: contraste vale para o pixel onde a letra está, não para a média do botão.
+  NÃO trocar para branco (cai para 2,1:1).
 
 Detalhes completos: `.claude/rules/marca.md`.
 

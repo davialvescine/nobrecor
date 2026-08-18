@@ -41,7 +41,7 @@ export default function CardServico({
     >
       {/* Fio dourado na base, crescendo no hover — mesma assinatura dos diferenciais. */}
       <span
-        className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#c8963e] to-[#a87b2f] transition-transform duration-500 group-hover:scale-x-100"
+        className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-[#c8963e] to-[#906928] transition-transform duration-500 group-hover:scale-x-100"
         aria-hidden="true"
       />
 
@@ -50,7 +50,7 @@ export default function CardServico({
         <IconeServico nome={servico.icone} className="w-7 h-7" />
       </span>
 
-      <h3 className="mt-5 font-display text-2xl leading-tight text-[#1b3a5c] transition-colors group-hover:text-[#a87b2f]">
+      <h3 className="mt-5 font-display text-2xl leading-tight text-[#1b3a5c] transition-colors group-hover:text-[#906928]">
         {titulo}
       </h3>
 
@@ -65,7 +65,7 @@ export default function CardServico({
 
       {/* mt-auto cola o CTA na base: com alturas de card diferentes na mesma
           linha, o CTA solto no meio parecia desalinhamento. */}
-      <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[#a87b2f]">
+      <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-[#906928]">
         {textoCta}
         <ArrowRight
           className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5"

@@ -5,7 +5,7 @@
   --color-azul-nobre: #1b3a5c; /* base, confiança — títulos e seções escuras */
   --color-off-white: #f7f4ef; /* fundo claro */
   --color-dourado: #c8963e; /* acento premium — CTA e destaques */
-  --color-dourado-escuro: #a87b2f; /* facetas do diamante, hover */
+  --color-dourado-escuro: #906928; /* facetas do diamante, hover */
   --color-aco: #5b7fa6; /* facetas, apoio */
   --color-carvao: #2b2b2b; /* texto corrido */
   --color-whatsapp: #25d366; /* ÚNICO verde do site — só WhatsApp */
@@ -93,13 +93,22 @@
 }
 
 @layer components {
-  /* Botão CTA dourado com texto azul-escuro.
-     Contraste aferido 5:1 — NÃO trocar para texto branco (cai para 2.1:1). */
+  /* Botão CTA dourado com texto azul-escuro (#1b3a5c), 14px semibold.
+     NÃO trocar para texto branco: cai para 2,1:1.
+
+     As três paradas do gradiente são explícitas, e não os tokens, porque cada
+     uma precisa passar sozinha nos 4,5:1 — o contraste vale para o pixel onde a
+     letra está, não para a média do botão. Medido: 5,57 / 4,87 / 4,51.
+
+     O que havia antes: o gradiente terminava no dourado-escuro e a ponta direita
+     ficava em 3,07, reprovando na parte do botão onde costuma cair o fim do
+     texto. A documentação afirmava "5:1 aferido", número que nunca existiu.
+     O :hover clareia (brightness 1.06), então só melhora. */
   .btn-dourado {
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    background: linear-gradient(135deg, #d9a94c 0%, var(--color-dourado) 55%, var(--color-dourado-escuro) 100%);
+    background: linear-gradient(135deg, #dcac52 0%, #d0a047 55%, #ca9944 100%);
     color: var(--color-azul-nobre);
     box-shadow: var(--shadow-cta);
     transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;

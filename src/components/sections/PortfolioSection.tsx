@@ -38,7 +38,7 @@ export default function PortfolioSection({
     <section className="py-20 bg-white" aria-labelledby="portfolio-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-[#a87b2f] font-semibold text-xs uppercase tracking-[0.18em] mb-3">
+          <p className="text-[#906928] font-semibold text-xs uppercase tracking-[0.18em] mb-3">
             Portfólio
           </p>
           <h2 id="portfolio-heading" className="font-display text-3xl md:text-4xl heading-line-center">
@@ -82,7 +82,7 @@ export default function PortfolioSection({
                       {bairro && (
                         <Link
                           href={`/bairros/${bairro.slug}`}
-                          className="rounded-full border border-[#1b3a5c]/12 bg-[#f7f4ef] px-2.5 py-1 transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+                          className="rounded-full border border-[#1b3a5c]/12 bg-[#f7f4ef] px-2.5 py-1 transition-colors hover:border-[#c8963e] hover:text-[#906928]"
                         >
                           {bairro.nome}
                         </Link>

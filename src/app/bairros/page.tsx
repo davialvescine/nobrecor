@@ -61,7 +61,7 @@ export default function BairrosPage() {
                   href={`/bairros/${b.slug}`}
                   className="group flex h-full flex-col rounded-[var(--radius-card)] border border-[#1b3a5c]/10 bg-[#f7f4ef] p-5 transition-all hover:-translate-y-0.5 hover:border-[#c8963e]/50 hover:shadow-[var(--shadow-card-hover)]"
                 >
-                  <span className="font-display text-lg text-[#1b3a5c] group-hover:text-[#a87b2f]">
+                  <span className="font-display text-lg text-[#1b3a5c] group-hover:text-[#906928]">
                     {b.nome}
                   </span>
                   <span className="mt-2 text-sm text-[#2b2b2b]/70 leading-relaxed">{b.perfil}</span>
@@ -99,7 +99,7 @@ export default function BairrosPage() {
                     <li key={b.slug}>
                       <Link
                         href={`/bairros/${b.slug}`}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-white px-3.5 py-1.5 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-white px-3.5 py-1.5 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#906928]"
                       >
                         <MapPin className="w-3 h-3 text-[#c8963e]" aria-hidden="true" />
                         {b.nome}

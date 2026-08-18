@@ -112,13 +112,13 @@ export default async function LandingPage({ params }: Props) {
       <nav aria-label="Você está em" className="border-b border-[#1b3a5c]/10 bg-[#f7f4ef] text-sm">
         <ol className="max-w-4xl mx-auto flex flex-wrap items-center gap-2 px-4 sm:px-6 lg:px-8 py-3 text-[#2b2b2b]/70">
           <li>
-            <Link href="/" className="hover:text-[#a87b2f]">
+            <Link href="/" className="hover:text-[#906928]">
               Início
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href={`/servicos/${servico.slug}`} className="hover:text-[#a87b2f]">
+            <Link href={`/servicos/${servico.slug}`} className="hover:text-[#906928]">
               {servico.nome}
             </Link>
           </li>
@@ -184,7 +184,7 @@ export default async function LandingPage({ params }: Props) {
             <li>
               <Link
                 href={`/bairros/${bairro.slug}`}
-                className="flex items-center gap-2.5 rounded-xl border border-[#c8963e]/40 bg-white px-4 py-3 text-sm font-semibold text-[#a87b2f]"
+                className="flex items-center gap-2.5 rounded-xl border border-[#c8963e]/40 bg-white px-4 py-3 text-sm font-semibold text-[#906928]"
               >
                 <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
                 Tudo sobre pintura em {bairro.nome}

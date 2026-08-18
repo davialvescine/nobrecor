@@ -124,13 +124,13 @@ export default async function ServicoPage({ params }: Props) {
       >
         <ol className="max-w-4xl mx-auto flex flex-wrap items-center gap-2 px-4 sm:px-6 lg:px-8 py-3 text-[#2b2b2b]/70">
           <li>
-            <Link href="/" className="hover:text-[#a87b2f]">
+            <Link href="/" className="hover:text-[#906928]">
               Início
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href="/servicos" className="hover:text-[#a87b2f]">
+            <Link href="/servicos" className="hover:text-[#906928]">
               Serviços
             </Link>
           </li>
@@ -154,7 +154,7 @@ export default async function ServicoPage({ params }: Props) {
           */}
           <GaleriaServico fotos={fotos} nomeServico={servico.nome} />
 
-          <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#c8963e]/30 bg-[#c8963e]/10 text-[#a87b2f]">
+          <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-[#c8963e]/30 bg-[#c8963e]/10 text-[#906928]">
             <IconeServico nome={servico.icone} className="h-8 w-8" />
           </span>
           <h2 className="mt-6 font-display text-2xl md:text-3xl heading-line">
@@ -190,7 +190,7 @@ export default async function ServicoPage({ params }: Props) {
             {servico.etapas.map((etapa, i) => (
               <li key={etapa.titulo} className="flex gap-4">
                 <span
-                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 font-display text-sm text-[#a87b2f]"
+                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 font-display text-sm text-[#906928]"
                   aria-hidden="true"
                 >
                   {String(i + 1).padStart(2, '0')}
@@ -204,7 +204,7 @@ export default async function ServicoPage({ params }: Props) {
           </ol>
 
           <div className="mt-12 rounded-[var(--radius-card)] border-l-4 border-[#c8963e] bg-[#f7f4ef] p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a87b2f]">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#906928]">
               O erro mais comum
             </p>
             <h3 className="mt-2 font-display text-xl">{servico.erroComum.titulo}</h3>
@@ -240,7 +240,7 @@ export default async function ServicoPage({ params }: Props) {
                 <li key={b.slug}>
                   <Link
                     href={`/${servico.slug}-${b.slug}`}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-white px-4 py-2 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-white px-4 py-2 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#906928]"
                   >
                     <MapPin className="w-3.5 h-3.5 text-[#c8963e]" aria-hidden="true" />
                     {servico.nome} em {b.nome}

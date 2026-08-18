@@ -46,7 +46,7 @@ export default function DiferenciaisSection() {
                 />
                 {/* Fio dourado na base, crescendo no hover. */}
                 <div
-                  className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-[0.28] bg-gradient-to-r from-[#c8963e] to-[#a87b2f] transition-transform duration-500 group-hover:scale-x-100"
+                  className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-[0.28] bg-gradient-to-r from-[#c8963e] to-[#906928] transition-transform duration-500 group-hover:scale-x-100"
                   aria-hidden="true"
                 />
 

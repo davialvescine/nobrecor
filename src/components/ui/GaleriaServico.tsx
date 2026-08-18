@@ -163,7 +163,7 @@ export default function GaleriaServico({ fotos, nomeServico }: GaleriaServicoPro
               onClick={() => setPausado((p) => !p)}
               aria-pressed={pausado}
               aria-label={pausado ? 'Retomar a passagem das fotos' : 'Pausar a passagem das fotos'}
-              className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#1b3a5c]/15 text-[#1b3a5c]/60 transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+              className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#1b3a5c]/15 text-[#1b3a5c]/60 transition-colors hover:border-[#c8963e] hover:text-[#906928]"
             >
               {pausado ? (
                 <Play className="h-3.5 w-3.5" aria-hidden="true" />

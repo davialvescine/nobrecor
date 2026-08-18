@@ -54,7 +54,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/servicos" className="text-[#c8963e] hover:underline">
+                <Link href="/servicos" className="text-[#e0bd77] hover:underline">
                   Ver todos os serviços →
                 </Link>
               </li>
@@ -81,7 +81,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/bairros" className="text-[#c8963e] hover:underline">
+                <Link href="/bairros" className="text-[#e0bd77] hover:underline">
                   Todos os bairros de Campo Grande →
                 </Link>
               </li>

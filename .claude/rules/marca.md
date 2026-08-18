@@ -9,7 +9,7 @@ Não alterar nada abaixo sem pedido explícito do dono.
 | Azul Nobre | `#1B3A5C` | base, seções escuras, títulos |
 | Off-White | `#F7F4EF` | fundo claro |
 | Dourado | `#C8963E` | acento premium, CTA, detalhes |
-| Dourado Escuro | `#A87B2F` | facetas, hover, texto de apoio |
+| Dourado Escuro | `#906928` | facetas, hover, texto de apoio em fundo claro |
 | Aço | `#5B7FA6` | facetas do diamante |
 | Carvão | `#2B2B2B` | texto corrido |
 | Verde WhatsApp | `#25D366` | **só** o botão do WhatsApp |
@@ -18,8 +18,17 @@ O verde é o ÚNICO elemento verde do site, e é proposital. Não usar verde par
 
 ## Botão dourado
 
-Fundo dourado com texto **azul-escuro** (`#1B3A5C`). Contraste aferido 5:1 (WCAG AA).
+Fundo dourado com texto **azul-escuro** (`#1B3A5C`), 14px semibold.
 NÃO trocar para texto branco — cai para ~2,1:1 e reprova.
+
+O fundo é um gradiente de três paradas, e **cada uma foi medida sozinha**:
+`#dcac52` (5,57) → `#d0a047` (4,87) → `#ca9944` (4,51). Todas passam nos 4,5:1 exigidos
+para texto abaixo de 18,66px. Medir a média do botão não serve: o contraste vale para o
+pixel onde a letra está, e era exatamente a ponta direita que reprovava.
+
+⚠️ Histórico: até 17/08/2026 a regra afirmava "contraste aferido 5:1". O número nunca
+existiu. O gradiente terminava em `#a87b2f` e a ponta direita media **3,07** — reprovava
+na parte do botão onde costuma cair o fim do texto. Foi achado medindo o site no ar.
 
 ## Tipografia
 

@@ -58,7 +58,7 @@ export default function BairrosSection() {
             <Reveal as="li" key={b.slug} delay={i * 45} from="escala">
               <Link
                 href={`/bairros/${b.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-[#f7f4ef] px-4 py-2 text-sm text-[#1b3a5c] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c8963e] hover:bg-white hover:text-[#a87b2f]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-[#f7f4ef] px-4 py-2 text-sm text-[#1b3a5c] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c8963e] hover:bg-white hover:text-[#906928]"
               >
                 <MapPin className="w-3.5 h-3.5 text-[#c8963e]" aria-hidden="true" />
                 {b.nome}
@@ -69,7 +69,7 @@ export default function BairrosSection() {
 
         <Link
           href="/bairros"
-          className="mx-auto mt-10 flex w-fit items-center gap-2 font-semibold text-[#a87b2f] hover:underline"
+          className="mx-auto mt-10 flex w-fit items-center gap-2 font-semibold text-[#906928] hover:underline"
         >
           Ver os {TOTAL_BAIRROS} bairros atendidos, por região urbana →
         </Link>

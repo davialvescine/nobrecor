@@ -186,7 +186,7 @@ export default function FormOrcamento({
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label className={ROTULO} htmlFor={`${id}-nome`}>
-                    Seu nome <span className="text-[#a87b2f]">*</span>
+                    Seu nome <span className="text-[#906928]">*</span>
                   </label>
                   <input
                     id={`${id}-nome`}

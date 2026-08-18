@@ -52,7 +52,7 @@ export default function FaqSection({
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-14 text-center">
-          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a87b2f]">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#906928]">
             Tire suas dúvidas
           </p>
           <h2 id="faq-heading" className="heading-line-center font-display text-4xl leading-[1.08] md:text-5xl lg:text-[3.4rem]">
@@ -71,7 +71,7 @@ export default function FaqSection({
                 open={idx === 0}
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 text-left transition-colors hover:bg-[#f7f4ef] [&::-webkit-details-marker]:hidden">
-                  <h3 className="font-body text-base font-semibold text-[#1b3a5c] transition-colors group-open:text-[#a87b2f]">
+                  <h3 className="font-body text-base font-semibold text-[#1b3a5c] transition-colors group-open:text-[#906928]">
                     {item.pergunta}
                   </h3>
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/35 bg-[#c8963e]/10 transition-colors duration-300 group-open:bg-[#c8963e]">

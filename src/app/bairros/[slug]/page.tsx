@@ -99,13 +99,13 @@ export default async function BairroPage({ params }: Props) {
       <nav aria-label="Você está em" className="border-b border-[#1b3a5c]/10 bg-[#f7f4ef] text-sm">
         <ol className="max-w-4xl mx-auto flex flex-wrap items-center gap-2 px-4 sm:px-6 lg:px-8 py-3 text-[#2b2b2b]/70">
           <li>
-            <Link href="/" className="hover:text-[#a87b2f]">
+            <Link href="/" className="hover:text-[#906928]">
               Início
             </Link>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href="/bairros" className="hover:text-[#a87b2f]">
+            <Link href="/bairros" className="hover:text-[#906928]">
               Onde atendemos
             </Link>
           </li>
@@ -174,7 +174,7 @@ export default async function BairroPage({ params }: Props) {
               <li key={s.slug}>
                 <Link
                   href={temLanding ? `/${s.slug}-${bairro.slug}` : `/servicos/${s.slug}`}
-                  className="flex items-center gap-2.5 rounded-xl border border-[#1b3a5c]/10 bg-white px-4 py-3 text-sm font-medium text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+                  className="flex items-center gap-2.5 rounded-xl border border-[#1b3a5c]/10 bg-white px-4 py-3 text-sm font-medium text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#906928]"
                 >
                   <ArrowRight className="w-3.5 h-3.5 text-[#c8963e] shrink-0" aria-hidden="true" />
                   {temLanding ? `${s.nome} em ${bairro.nome}` : s.nome}
@@ -182,7 +182,7 @@ export default async function BairroPage({ params }: Props) {
               </li>
             ))}
           </ul>
-          <Link href="/servicos" className="mt-6 inline-block font-semibold text-[#a87b2f] hover:underline">
+          <Link href="/servicos" className="mt-6 inline-block font-semibold text-[#906928] hover:underline">
             Ver todos os serviços →
           </Link>
         </div>
@@ -223,7 +223,7 @@ export default async function BairroPage({ params }: Props) {
             ].map((etapa, i) => (
               <li key={etapa.titulo} className="flex gap-4">
                 <span
-                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 font-display text-sm text-[#a87b2f]"
+                  className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#c8963e]/40 bg-[#c8963e]/10 font-display text-sm text-[#906928]"
                   aria-hidden="true"
                 >
                   {String(i + 1).padStart(2, '0')}
@@ -251,7 +251,7 @@ export default async function BairroPage({ params }: Props) {
                 <li key={v.slug}>
                   <Link
                     href={`/bairros/${v.slug}`}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-[#f7f4ef] px-4 py-2 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#a87b2f]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#1b3a5c]/15 bg-[#f7f4ef] px-4 py-2 text-sm text-[#1b3a5c] transition-colors hover:border-[#c8963e] hover:text-[#906928]"
                   >
                     <MapPin className="w-3.5 h-3.5 text-[#c8963e]" aria-hidden="true" />
                     {v.nome}

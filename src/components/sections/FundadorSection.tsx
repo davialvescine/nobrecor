@@ -48,7 +48,7 @@ export default function FundadorSection() {
 
         <Reveal>
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#a87b2f]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#906928]">
               Quem responde pela obra
             </p>
 
