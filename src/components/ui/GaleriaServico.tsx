@@ -119,8 +119,17 @@ export default function GaleriaServico({ fotos, nomeServico }: GaleriaServicoPro
 
       {varias && (
         <div className="mt-4 flex items-center justify-center gap-3">
+          {/*
+            O ponto visível tem 10px, mas quem recebe o toque é o botão em volta.
+
+            Medido no site no ar: os pontos eram 10x10 com 20px entre centros, e
+            a WCAG 2.5.8 pede 24px (por tamanho ou por espaçamento). Antes de ser
+            norma, é problema de dedo: alvo de 10px no celular erra muito. O
+            padding resolve os dois sem mudar o desenho — por isso o `gap` do
+            contêiner caiu para zero, já que o espaçamento agora vem do botão.
+          */}
           <div
-            className="flex items-center gap-2.5"
+            className="flex items-center"
             role="group"
             aria-label={`Fotos de ${nomeServico.toLowerCase()}`}
           >
@@ -131,12 +140,16 @@ export default function GaleriaServico({ fotos, nomeServico }: GaleriaServicoPro
                 onClick={() => setAtiva(i)}
                 aria-label={`Ver foto ${i + 1} de ${fotos.length}`}
                 aria-current={i === ativa}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  i === ativa
-                    ? 'w-8 bg-[#c8963e]'
-                    : 'w-2.5 bg-[#1b3a5c]/25 hover:bg-[#1b3a5c]/45'
-                }`}
-              />
+                className="flex items-center justify-center px-2 py-2"
+              >
+                <span
+                  className={`block h-2.5 rounded-full transition-all duration-300 ${
+                    i === ativa
+                      ? 'w-8 bg-[#c8963e]'
+                      : 'w-2.5 bg-[#1b3a5c]/25 hover:bg-[#1b3a5c]/45'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
