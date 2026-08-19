@@ -17,7 +17,7 @@
 | Domínio | ✅ **https://nobrecorpinturas.com.br** no ar, TLS válido, www com 308 para o apex |
 | Instagram | ✅ `@nobrecorpinturasaltopadrao` (confirmado pelo dono em 16/08/2026) |
 | Telefone | ✅ `+55 67 98152-2412` (confirmado pelo dono em 16/08/2026) |
-| E-mail | ⚠️ `nobrecorpinturas@gmail.com` — trocar por `contato@` no domínio próprio após o registro |
+| E-mail | ✅ `contato@nobrecorpinturas.com.br` — encaminhamento grátis (ImprovMX) para o gmail, com catch-all. MX/SPF/DMARC no DNS da Vercel. Ver `docs/email-dominio.md` |
 | Formulário de orçamento | ✅ `FormOrcamento`, sem backend, envia pelo WhatsApp |
 | Google Analytics | ✅ GA4 `G-1H646N1MPQ`, fuso de Campo Grande, `NEXT_PUBLIC_GA_ID` na Vercel |
 | Search Console | ✅ verificado por DNS (TXT), sitemap com 211 URLs processado |
@@ -519,6 +519,6 @@ grafiato, marmorato e pintura decorativa, que continuam no catálogo.
 | Formulário sem backend | Mantém o site 100% estático e a LGPD trivial: nada é gravado, os dados vão direto para a conversa do WhatsApp |
 | Bairro e serviço em `<select>` no form | O concorrente pede região como texto livre e recebe "asa sul", "Asa-Sul", "asasul". O select devolve o nome canônico de `src/content/` |
 | Honeypot no lugar de reCAPTCHA | Sem servidor para proteger, o reCAPTCHA só custaria ~250 KB de JS de terceiro e um cookie |
-| E-mail em gmail.com por ora | É a caixa que o dono de fato lê. Vira `contato@nobrecorpinturas.com.br` assim que o domínio for registrado |
+| E-mail `contato@` por encaminhamento, não caixa própria | Endereço no domínio pesa no NAP e no alto padrão, mas caixa nova é caixa que ninguém abre. O ImprovMX repassa para o gmail que o dono já lê. Catch-all `*@` ligado para não perder verificação que o Google mande para `admin@` ou `postmaster@` |
 | Sábado e domingo fechados | Não há atendimento no fim de semana; o `openingHoursSpecification` foi ajustado junto |
 | h1 da home com as 3 promessas | Mais chamativo que o anterior sem perder a localidade. "Pintura" no lugar de "Pintor" foi pedido do dono — o casamento exato da busca segue no `<title>` |

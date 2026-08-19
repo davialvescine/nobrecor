@@ -1,7 +1,26 @@
 # E-mail no domínio — contato@nobrecorpinturas.com.br
 
-> Estado em 17/08/2026: o e-mail do site é **nobrecorpinturas@gmail.com**. O domínio está no ar
-> e o DNS é gerenciado pela Vercel, então os registros abaixo entram num comando.
+> ✅ **Feito em 19/08/2026.** O site publica `contato@nobrecorpinturas.com.br`, pela **Opção A**
+> (encaminhamento ImprovMX, grátis). Teste confirmado no log do ImprovMX: entrou pelo
+> `mx1.improvmx.com` e foi entregue no `gmail-smtp-in.l.google.com` em **1,0 segundo**, com
+> `250 OK`. Aliases ativos: `contato@` e o catch-all `*@`, ambos para
+> `nobrecorpinturas@gmail.com`.
+>
+> Duas diferenças em relação ao que este arquivo previa:
+>
+> 1. **O SPF inclui `_spf.google.com` junto com o ImprovMX** — assim dá para usar o "Enviar
+>    e-mail como" do Gmail e responder como `contato@` de graça, sem o plano pago do ImprovMX.
+>    Sem esse include, essas respostas cairiam em spam.
+> 2. **O SPF termina em `~all`, não no `-all`** que o painel do ImprovMX recomenda. Com `-all`,
+>    qualquer serviço que a gente esquecer de incluir tem o e-mail rejeitado de vez, em lugar
+>    de só marcado. Endurecer depois, junto com o DMARC.
+>
+> ⚠️ **Encaminhamento quebra o SPF do remetente** — é inerente, não é erro de configuração. A
+> mensagem diz "sou do gmail.com" mas quem entrega é o ImprovMX, que não está no SPF do
+> gmail.com. Por isso o primeiro teste caiu no spam. O DKIM sobrevive ao encaminhamento, então
+> e-mail do Google (assinado por `google.com`) se sai melhor — mas vale criar um filtro no Gmail
+> em **Para: `@nobrecorpinturas.com.br`** com "Nunca enviar para o Spam", para não perder
+> verificação.
 
 ---
 
