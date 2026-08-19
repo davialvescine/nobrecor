@@ -19,11 +19,12 @@ export const BUSINESS = {
   phoneFormatted: '(67) 98152-2412',
   whatsappNumero: '5567981522412',
 
-  // Caixa informada pelo dono em 16/08/2026. Quando o domínio estiver
-  // registrado, criar `contato@nobrecorpinturas.com.br` com encaminhamento para
-  // esta conta e trocar aqui: endereço no próprio domínio pesa mais no NAP e
-  // no alto padrão que um gmail.com.
-  email: 'nobrecorpinturas@gmail.com',
+  // Endereço no próprio domínio desde 19/08/2026: pesa mais no NAP e no alto
+  // padrão que um gmail.com. Não é caixa própria — é encaminhamento (ImprovMX,
+  // grátis) que cai em `nobrecorpinturas@gmail.com`, junto com um catch-all
+  // `*@` para não perder verificação que o Google mande para `admin@` ou
+  // `postmaster@`. MX, SPF e DMARC no DNS da Vercel. Ver `docs/email-dominio.md`.
+  email: 'contato@nobrecorpinturas.com.br',
 
   // Domínio escolhido pelo dono em 16/08/2026. NÃO trocar por env var por
   // ambiente — canonical de preview destrói indexação (ver CLAUDE.md §14).
